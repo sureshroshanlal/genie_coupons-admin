@@ -18,7 +18,7 @@ export default function DashboardSummary() {
   if (!stats) {
     return (
       <section className="max-w-6xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Welcome to HandPicked CMS</h1>
+        <h1 className="text-2xl font-bold mb-6">Welcome to Genie Coupon CMS</h1>
         <div className="flex flex-wrap gap-6">
           <div className="text-gray-500">Loading summary...</div>
         </div>
@@ -28,7 +28,7 @@ export default function DashboardSummary() {
 
   return (
     <section className="max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Welcome to HandPicked CMS</h1>
+      <h1 className="text-2xl font-bold mb-6">Welcome to Genie Coupon CMS</h1>
       <div className="flex flex-wrap gap-6">
         {stats.map(({ label, value }) => (
           <div

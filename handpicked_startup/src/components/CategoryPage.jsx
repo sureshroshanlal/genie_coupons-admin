@@ -18,7 +18,7 @@ export default function CategoryPage({ slug, meta }) {
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <a href="/" className="text-xl font-bold text-blue-600">🎯 HandPicked</a>
+          <a href="/" className="text-xl font-bold text-blue-600">🎯 Genie Coupon</a>
           <div className="w-full md:w-1/3">
             <div className="relative">
               <input
@@ -91,9 +91,9 @@ export default function CategoryPage({ slug, meta }) {
 
         {/* Description 2 (SEO + AEO block) */}
         <section className="mt-12 prose max-w-none">
-          <h2>Why Trust HandPicked for {categoryName} Offers?</h2>
+          <h2>Why Trust Genie Coupon for {categoryName} Offers?</h2>
           <p>
-            HandPicked was designed with transparency at its core. Every code is
+            Genie Coupon was designed with transparency at its core. Every code is
             either user-tested or manually verified by our team. We update pages
             daily and give priority to high-usage merchants.
           </p>

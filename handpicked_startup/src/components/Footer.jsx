@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-300 py-8 mt-20">
       <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8">
         <div>
-          <h4 className="text-white font-semibold mb-3">HandPicked</h4>
+          <h4 className="text-white font-semibold mb-3">Genie Coupon</h4>
           <p className="text-sm">
             Trusted by smart shoppers worldwide. Updated daily.
           </p>
@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="text-center text-xs mt-6 text-gray-500">
-        © {new Date().getFullYear()} HandPicked. All rights reserved.
+        © {new Date().getFullYear()} Genie Coupon. All rights reserved.
       </div>
     </footer>
   );

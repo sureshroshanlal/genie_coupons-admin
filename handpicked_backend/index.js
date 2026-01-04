@@ -18,7 +18,7 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = ["https://handpickedstartup.vercel.app"];
+const allowedOrigins = ["https://admin.geniecoupon.com"];
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -57,7 +57,7 @@ app.use("/api/imports", importRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Handpicked Backend API" });
+  res.json({ message: "Welcome to Genie Coupon API" });
 });
 
 // 404 (after routes)

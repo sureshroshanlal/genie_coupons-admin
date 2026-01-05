@@ -116,25 +116,6 @@ export default function AddMerchantModal({ onClose, onSave }) {
       setCategories((arr) => [...arr, v]);
     }
     setForm((f) => ({ ...f, category_input: "" }));
-
-    // Optional: persist new category to backend and add to allCategories
-    // Uncomment & edit endpoint if you'd like to create categories server-side:
-    /*
-    try {
-      const resp = await fetch('/api/merchant-categories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: v })
-      });
-      if (resp.ok) {
-        const data = await resp.json();
-        const cname = data?.data?.name ?? v;
-        setAllCategories(prev => prev.includes(cname) ? prev : [...prev, cname]);
-      }
-    } catch (err) {
-      console.warn('persist category failed (non-fatal):', err);
-    }
-    */
   };
 
   const removeCategory = (v) => {

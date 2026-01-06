@@ -72,3 +72,50 @@ export async function toggleEditorPick(id) {
   const res = await http.patch(`/coupons/${id}/editor-pick`);
   return { data: res.data?.data ?? null, error: res.data?.error ?? null };
 }
+
+// === New functions for validation ===
+// Fetch proofs for a merchant
+export async function fetchMerchantProofs(merchantId, page = 1, limit = 10) {
+  try {
+    const qp = new URLSearchParams();
+    qp.set("page", String(page));
+    qp.set("limit", String(limit));
+
+    const res = await http.get(
+      `/coupons/validation/${merchantId}?${qp.toString()}`
+    );
+    // Assuming API returns { data: { rows: [...], total: N } }
+    return {
+      data: {
+        rows: Array.isArray(res.data?.data?.rows) ? res.data.data.rows : [],
+        total: Number(res.data?.data?.total || 0),
+      },
+      error: null,
+    };
+  } catch (err) {
+    return { data: { rows: [], total: 0 }, error: err };
+  }
+}
+
+// Delete a proof by ID
+export async function deleteProof(proofId) {
+  try {
+    const res = await http.delete(`/coupons/validation/proof/${proofId}`);
+    return { data: res.data?.data ?? null, error: null };
+  } catch (err) {
+    return { data: null, error: err };
+  }
+}
+
+// Upload new proofs for a merchant
+export async function uploadProofs(merchantId, formData) {
+  try {
+    const res = await http.post(
+      `/coupons/validation/${merchantId}/upload`,
+      formData
+    );
+    return { data: res.data?.data ?? null, error: null };
+  } catch (err) {
+    return { data: null, error: err };
+  }
+}

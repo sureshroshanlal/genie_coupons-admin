@@ -4,7 +4,10 @@ import {
   addMerchant,
   uploadMerchantImage,
 } from "../../services/merchantService";
-import { getAllCategories } from "../../services/merchantCategoryService.js";
+import {
+  getAllCategories,
+  getSubcategoriesByCategoryId,
+} from "../../services/merchantCategoryService.js";
 import useEscClose from "../hooks/useEscClose";
 import SafeQuill from "../common/SafeQuill.jsx";
 
@@ -37,51 +40,42 @@ export default function AddMerchantModal({ onClose, onSave }) {
     show_at_search_bar: false,
     extension_active: false,
     extension_mandatory: false,
-    is_header_2: false, // second Is Header seen in grid
-    coupon_icon_visibility: "visible", // visible | invisible
-    store_status_visibility: "visible", // visible | invisible
+    is_header_2: false,
+    coupon_icon_visibility: "visible",
+    store_status_visibility: "visible",
   });
 
   const [logo, setLogo] = useState(null);
   const [logoPreview, setLogoPreview] = useState("");
 
-  // --- categories state (selected) and all available categories (from DB) ---
-  const [categories, setCategories] = useState([]); // selected category names (was inline-added)
-  const [allCategories, setAllCategories] = useState([]); // fetched from backend
+  const [categories, setCategories] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
   const [loadingCats, setLoadingCats] = useState(true);
 
-  const [brandCategories, setBrandCategories] = useState([]); // inline-added
+  // category_id / subcategory_id
+  const [categoryId, setCategoryId] = useState("");
+  const [subcategoryId, setSubcategoryId] = useState("");
+  const [allSubcategories, setAllSubcategories] = useState([]);
+  const [loadingSubs, setLoadingSubs] = useState(false);
 
-  const [couponH2Blocks, setCouponH2Blocks] = useState([]); // [{heading, description}]
-  const [couponH3Blocks, setCouponH3Blocks] = useState([]); // [{heading, description}]
-  const [faqs, setFaqs] = useState([]); // [{question, answer}]
-  const [suggestions, setSuggestions] = useState([]); // [text]
-
+  const [brandCategories, setBrandCategories] = useState([]);
+  const [couponH2Blocks, setCouponH2Blocks] = useState([]);
+  const [couponH3Blocks, setCouponH3Blocks] = useState([]);
+  const [faqs, setFaqs] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
   const [saving, setSaving] = useState(false);
   const quillRef = useRef(null);
 
-  // Fetch available categories from backend once
+  // Load root categories
   useEffect(() => {
     let mounted = true;
     (async () => {
       try {
         setLoadingCats(true);
-        const res = await getAllCategories(); // already returns an array
-        if (!mounted) return;
-
-        if (!Array.isArray(res) || res.length === 0) {
-          setAllCategories([]);
-          return;
-        }
-
-        const normalized = res.map((c) =>
-          typeof c === "string" ? c : c.name ?? c.category_name ?? String(c.id)
-        );
-
-        setAllCategories(normalized);
-      } catch (err) {
-        console.error("Could not fetch categories:", err);
-        setAllCategories([]);
+        const res = await getAllCategories();
+        if (mounted) setAllCategories(Array.isArray(res) ? res : []);
+      } catch {
+        if (mounted) setAllCategories([]);
       } finally {
         if (mounted) setLoadingCats(false);
       }
@@ -90,6 +84,31 @@ export default function AddMerchantModal({ onClose, onSave }) {
       mounted = false;
     };
   }, []);
+
+  // Load subcategories when category changes
+  useEffect(() => {
+    if (!categoryId) {
+      setAllSubcategories([]);
+      setSubcategoryId("");
+      return;
+    }
+    let mounted = true;
+    (async () => {
+      setLoadingSubs(true);
+      setSubcategoryId("");
+      try {
+        const res = await getSubcategoriesByCategoryId(categoryId);
+        if (mounted) setAllSubcategories(Array.isArray(res) ? res : []);
+      } catch {
+        if (mounted) setAllSubcategories([]);
+      } finally {
+        if (mounted) setLoadingSubs(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [categoryId]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -108,25 +127,14 @@ export default function AddMerchantModal({ onClose, onSave }) {
     }
   };
 
-  // Add typed category to selected categories (and clear input)
-  const addCategory = async () => {
+  const addCategory = () => {
     const v = String(form.category_input || "").trim();
-    if (!v) return;
-    if (!categories.includes(v)) {
-      setCategories((arr) => [...arr, v]);
-    }
+    if (!v || categories.includes(v)) return;
+    setCategories((arr) => [...arr, v]);
     setForm((f) => ({ ...f, category_input: "" }));
   };
-
-  const removeCategory = (v) => {
+  const removeCategory = (v) =>
     setCategories((arr) => arr.filter((x) => x !== v));
-  };
-
-  // Handler for native <select multiple>
-  const onSelectChange = (e) => {
-    const opts = Array.from(e.target.selectedOptions || []).map((o) => o.value);
-    setCategories(opts);
-  };
 
   const [brandCategoryInput, setBrandCategoryInput] = useState("");
   const addBrandCategory = () => {
@@ -135,9 +143,8 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setBrandCategories((arr) => [...arr, v]);
     setBrandCategoryInput("");
   };
-  const removeBrandCategory = (v) => {
+  const removeBrandCategory = (v) =>
     setBrandCategories((arr) => arr.filter((x) => x !== v));
-  };
 
   const [tempHeading, setTempHeading] = useState("");
   const [tempDesc, setTempDesc] = useState("");
@@ -150,9 +157,8 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setTempHeading("");
     setTempDesc("");
   };
-  const removeCouponH2 = (i) => {
+  const removeCouponH2 = (i) =>
     setCouponH2Blocks((arr) => arr.filter((_, idx) => idx !== i));
-  };
 
   const [tempHeading3, setTempHeading3] = useState("");
   const [tempDesc3, setTempDesc3] = useState("");
@@ -165,9 +171,8 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setTempHeading3("");
     setTempDesc3("");
   };
-  const removeCouponH3 = (i) => {
+  const removeCouponH3 = (i) =>
     setCouponH3Blocks((arr) => arr.filter((_, idx) => idx !== i));
-  };
 
   const [tempQ, setTempQ] = useState("");
   const [tempA, setTempA] = useState("");
@@ -180,9 +185,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setTempQ("");
     setTempA("");
   };
-  const removeFaq = (i) => {
-    setFaqs((arr) => arr.filter((_, idx) => idx !== i));
-  };
+  const removeFaq = (i) => setFaqs((arr) => arr.filter((_, idx) => idx !== i));
 
   const [tempSuggestion, setTempSuggestion] = useState("");
   const addSuggestion = () => {
@@ -190,15 +193,13 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setSuggestions((arr) => [...arr, tempSuggestion.trim()]);
     setTempSuggestion("");
   };
-  const removeSuggestion = (i) => {
+  const removeSuggestion = (i) =>
     setSuggestions((arr) => arr.filter((_, idx) => idx !== i));
-  };
 
   const pickLogo = (file) => {
     setLogo(file || null);
     if (logoPreview) URL.revokeObjectURL(logoPreview);
-    if (file) setLogoPreview(URL.createObjectURL(file));
-    else setLogoPreview("");
+    setLogoPreview(file ? URL.createObjectURL(file) : "");
   };
 
   const resetAll = () => {
@@ -240,14 +241,15 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setCouponH3Blocks([]);
     setFaqs([]);
     setSuggestions([]);
+    setCategoryId("");
+    setSubcategoryId("");
+    setAllSubcategories([]);
     pickLogo(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (saving) return;
-    if (!form.name || !form.slug) return;
-
+    if (saving || !form.name || !form.slug) return;
     setSaving(true);
     const fd = new FormData();
     fd.append("name", form.name);
@@ -279,10 +281,9 @@ export default function AddMerchantModal({ onClose, onSave }) {
     fd.append("is_header_2", String(!!form.is_header_2));
     fd.append("coupon_icon_visibility", form.coupon_icon_visibility);
     fd.append("store_status_visibility", form.store_status_visibility);
-
+    fd.append("category_id", categoryId || "");
+    fd.append("subcategory_id", subcategoryId || "");
     if (logo) fd.append("logo", logo);
-
-    // arrays as JSON
     fd.append("category_names", JSON.stringify(categories));
     fd.append("brand_categories", JSON.stringify(brandCategories));
     fd.append("coupon_h2_blocks", JSON.stringify(couponH2Blocks));
@@ -327,17 +328,14 @@ export default function AddMerchantModal({ onClose, onSave }) {
     </label>
   );
 
-  // ✅ Custom image handler with ref forwarding
   const imageHandler = () => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
     input.click();
-
     input.onchange = async () => {
       const file = input.files?.[0];
       if (!file) return;
-
       try {
         const url = await uploadMerchantImage(file);
         if (url) {
@@ -361,11 +359,10 @@ export default function AddMerchantModal({ onClose, onSave }) {
     "italic",
     "underline",
     "strike",
-    "list", // ← only "list" here; toolbar still shows ordered/bullet
+    "list",
     "link",
     "image",
   ];
-
   const modules = {
     toolbar: {
       container: [
@@ -377,11 +374,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
       ],
       handlers: { image: imageHandler },
     },
-    history: {
-      delay: 500,
-      maxStack: 200,
-      userOnly: true,
-    },
+    history: { delay: 500, maxStack: 200, userOnly: true },
     keyboard: {
       bindings: {
         undo: {
@@ -410,21 +403,17 @@ export default function AddMerchantModal({ onClose, onSave }) {
     },
   };
 
-  // ✅ Harden undo/redo with a direct keydown fallback on the editor root
   useEffect(() => {
     const editor = quillRef.current?.getEditor?.();
     if (!editor) return;
-
     const root = editor.root;
     const history = editor.getModule("history");
     const isMac =
       typeof navigator !== "undefined" &&
       /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-
     const onKeyDown = (e) => {
       const ctrlOrCmd = isMac ? e.metaKey : e.ctrlKey;
       if (!ctrlOrCmd) return;
-
       const key = e.key?.toLowerCase?.();
       if (key === "z" && !e.shiftKey) {
         e.preventDefault();
@@ -434,12 +423,10 @@ export default function AddMerchantModal({ onClose, onSave }) {
         history.redo();
       }
     };
-
     root.addEventListener("keydown", onKeyDown);
     return () => root.removeEventListener("keydown", onKeyDown);
   }, [quillRef]);
 
-  // close on ESC
   useEscClose(onClose);
 
   return (
@@ -476,11 +463,53 @@ export default function AddMerchantModal({ onClose, onSave }) {
             />
           </div>
 
-          {/* Category + Add category (REPLACED: native multi-select + chips + typed add) */}
-          <div>
-            <label className="block mb-1">Category</label>
+          {/* Category ID + Subcategory ID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block mb-1">Category</label>
+              <select
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                className="w-full border px-3 py-2 rounded"
+                disabled={loadingCats}
+              >
+                <option value="">
+                  {loadingCats ? "Loading…" : "Select category"}
+                </option>
+                {allCategories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block mb-1">Subcategory</label>
+              <select
+                value={subcategoryId}
+                onChange={(e) => setSubcategoryId(e.target.value)}
+                className="w-full border px-3 py-2 rounded"
+                disabled={!categoryId || loadingSubs}
+              >
+                <option value="">
+                  {!categoryId
+                    ? "Select category first"
+                    : loadingSubs
+                      ? "Loading…"
+                      : "Select subcategory"}
+                </option>
+                {allSubcategories.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-            {/* Dropdown add UX */}
+          {/* Category Names (legacy multi-select) */}
+          <div>
+            <label className="block mb-1">Category Names (tags)</label>
             <div className="flex gap-2">
               <select
                 name="category_input"
@@ -490,33 +519,24 @@ export default function AddMerchantModal({ onClose, onSave }) {
                 }
                 className="flex-1 border px-3 py-2 rounded"
                 disabled={loadingCats}
-                aria-label="Select category to add"
               >
                 <option value="">
                   {loadingCats ? "Loading categories…" : "Select a category"}
                 </option>
                 {allCategories.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
+                  <option key={c.id} value={c.name}>
+                    {c.name}
                   </option>
                 ))}
               </select>
-
               <button
                 type="button"
                 className="bg-blue-600 text-white px-3 py-2 rounded"
-                onClick={() => {
-                  const v = String(form.category_input || "").trim();
-                  if (!v) return;
-                  if (!categories.includes(v))
-                    setCategories((arr) => [...arr, v]);
-                  setForm((f) => ({ ...f, category_input: "" }));
-                }}
+                onClick={addCategory}
               >
                 + Add
               </button>
             </div>
-            {/* Selected chips */}
             {categories.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-2">
                 {categories.map((c) => (
@@ -529,7 +549,6 @@ export default function AddMerchantModal({ onClose, onSave }) {
                       type="button"
                       className="ml-1 text-red-600 hover:text-red-800"
                       onClick={() => removeCategory(c)}
-                      aria-label={`Remove category ${c}`}
                     >
                       ×
                     </button>
@@ -650,13 +669,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
           </div>
           <div>
             <label className="block mb-1">Description</label>
-            <div
-              className="
-                min-h-[400px] border rounded bg-white
-                [&_.ql-container]:min-h-[400px]
-                [&_.ql-editor]:min-h-[400px]
-                [&_.ql-editor]:overflow-y-auto"
-            >
+            <div className="min-h-[400px] border rounded bg-white [&_.ql-container]:min-h-[400px] [&_.ql-editor]:min-h-[400px] [&_.ql-editor]:overflow-y-auto">
               <SafeQuill
                 ref={quillRef}
                 theme="snow"
@@ -680,8 +693,6 @@ export default function AddMerchantModal({ onClose, onSave }) {
               className="w-full border px-3 py-2 rounded"
             />
           </div>
-
-          {/* Ads Description + Brand Category */}
           <div>
             <label className="block mb-1">Ads Description</label>
             <textarea
@@ -693,6 +704,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             />
           </div>
 
+          {/* Brand Category */}
           <div>
             <div className="flex gap-2 items-end">
               <div className="flex-1">
@@ -731,7 +743,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
               </div>
             )}
             <div className="mt-3">
-              <label className="block mb-1">Ads Description</label>
+              <label className="block mb-1">Ads Description Label</label>
               <input
                 name="ads_description_label"
                 value={form.ads_description_label}
@@ -741,7 +753,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             </div>
           </div>
 
-          {/* Toggles grid */}
+          {/* Toggles */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <Bool name="sidebar" label="Sidebar" />
             <Bool name="home" label="Home" />
@@ -755,7 +767,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             <Bool name="show_at_search_bar" label="Show at Search Bar" />
             <Bool name="extension_active" label="Extension Active" />
             <Bool name="extension_mandatory" label="Extension Mandatory" />
-            <Bool name="is_header_2" label="Is Header" />
+            <Bool name="is_header_2" label="Is Header 2" />
           </div>
 
           {/* Radios */}
@@ -792,7 +804,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             </div>
           </div>
 
-          {/* Sectioned content with [+] Add */}
+          {/* H2 blocks */}
           <div className="border rounded p-3">
             <div className="font-medium mb-2">Coupon H2 & Descriptions</div>
             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -836,6 +848,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             )}
           </div>
 
+          {/* H3 blocks */}
           <div className="border rounded p-3">
             <div className="font-medium mb-2">Coupon H3 & Descriptions</div>
             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -879,6 +892,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             )}
           </div>
 
+          {/* FAQs */}
           <div className="border rounded p-3">
             <div className="font-medium mb-2">Store Question and Answers</div>
             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -922,6 +936,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             )}
           </div>
 
+          {/* Suggestions */}
           <div className="border rounded p-3">
             <div className="font-medium mb-2">Store Suggestions</div>
             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -957,7 +972,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
             )}
           </div>
 
-          {/* Footer actions */}
+          {/* Footer */}
           <div className="flex justify-end gap-3">
             <button
               type="button"
@@ -976,7 +991,6 @@ export default function AddMerchantModal({ onClose, onSave }) {
             <button
               type="submit"
               disabled={saving}
-              aria-busy={saving}
               className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
             >
               {saving ? "Adding..." : "Add Stores"}

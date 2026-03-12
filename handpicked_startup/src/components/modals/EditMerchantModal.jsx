@@ -5,14 +5,16 @@ import {
   updateMerchant,
   uploadMerchantImage,
 } from "../../services/merchantService";
-import { getAllCategories } from "../../services/merchantCategoryService.js";
+import {
+  getAllCategories,
+  getSubcategoriesByCategoryId,
+} from "../../services/merchantCategoryService.js";
 import useEscClose from "../hooks/useEscClose";
 import SafeQuill from "../common/SafeQuill.jsx";
 
 export default function EditMerchantModal({ merchantId, onClose, onSave }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-
   const [form, setForm] = useState(null);
 
   const [logo, setLogo] = useState(null);
@@ -20,17 +22,20 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
 
   const [categories, setCategories] = useState([]);
   const [brandCategories, setBrandCategories] = useState([]);
-
   const [couponH2Blocks, setCouponH2Blocks] = useState([]);
   const [couponH3Blocks, setCouponH3Blocks] = useState([]);
   const [faqs, setFaqs] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
 
-  // --- new: all categories list + loading state
   const [allCategories, setAllCategories] = useState([]);
   const [loadingCats, setLoadingCats] = useState(true);
 
-  // Temp inputs for list sections
+  // category_id / subcategory_id
+  const [categoryId, setCategoryId] = useState("");
+  const [subcategoryId, setSubcategoryId] = useState("");
+  const [allSubcategories, setAllSubcategories] = useState([]);
+  const [loadingSubs, setLoadingSubs] = useState(false);
+
   const [categoryInput, setCategoryInput] = useState("");
   const [brandCategoryInput, setBrandCategoryInput] = useState("");
   const [tempHeading, setTempHeading] = useState("");
@@ -42,6 +47,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
   const [tempSuggestion, setTempSuggestion] = useState("");
   const quillRef = useRef(null);
 
+  // Load merchant data
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -49,8 +55,6 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
       try {
         const m = await getMerchant(merchantId);
         if (!mounted) return;
-
-        // Normalize incoming data to the same shape the Add form uses
         setForm({
           name: m?.name || "",
           slug: m?.slug || "",
@@ -81,87 +85,45 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
           is_header_2: !!m?.is_header_2,
           coupon_icon_visibility: m?.coupon_icon_visibility || "visible",
           store_status_visibility: m?.store_status_visibility || "visible",
-          logo_url: m?.logo_url || m?.logo || "",
+          logo_url: m?.logo_url || "",
         });
-
         setCategories(Array.isArray(m?.category_names) ? m.category_names : []);
         setBrandCategories(
-          Array.isArray(m?.brand_categories) ? m.brand_categories : []
+          Array.isArray(m?.brand_categories) ? m.brand_categories : [],
         );
         setCouponH2Blocks(
-          Array.isArray(m?.coupon_h2_blocks) ? m.coupon_h2_blocks : []
+          Array.isArray(m?.coupon_h2_blocks) ? m.coupon_h2_blocks : [],
         );
         setCouponH3Blocks(
-          Array.isArray(m?.coupon_h3_blocks) ? m.coupon_h3_blocks : []
+          Array.isArray(m?.coupon_h3_blocks) ? m.coupon_h3_blocks : [],
         );
         setFaqs(Array.isArray(m?.faqs) ? m.faqs : []);
         setSuggestions(Array.isArray(m?.suggestions) ? m.suggestions : []);
-
-        setLogoPreview(m?.logo_url || m?.logo || "");
+        setLogoPreview(m?.logo_url || "");
+        // Pre-populate category_id / subcategory_id
+        setCategoryId(m?.category_id ? String(m.category_id) : "");
+        setSubcategoryId(m?.subcategory_id ? String(m.subcategory_id) : "");
       } catch (e) {
         console.error("Failed to load merchant:", e?.message || e);
-        setForm({
-          name: "",
-          slug: "",
-          web_url: "",
-          aff_url: "",
-          tracker_lock: false,
-          h1keyword: "",
-          seo_title: "",
-          seo_keywords: "",
-          seo_description: "",
-          side_description_html: "",
-          description_html: "",
-          table_content_html: "",
-          ads_description_html: "",
-          ads_description_label: "",
-          sidebar: false,
-          home: false,
-          ads_block_all: false,
-          ads_block_banners: false,
-          is_header: false,
-          deals_home: false,
-          tag_home: false,
-          amazon_store: false,
-          active: false,
-          show_at_search_bar: false,
-          extension_active: false,
-          extension_mandatory: false,
-          is_header_2: false,
-          coupon_icon_visibility: "visible",
-          store_status_visibility: "visible",
-          logo_url: "",
-        });
       } finally {
         if (mounted) setLoading(false);
       }
     })();
     return () => {
       mounted = false;
-      if (logoPreview) URL.revokeObjectURL(logoPreview);
     };
-  }, [merchantId]); // eslint-disable-line
+  }, [merchantId]);
 
-  // fetch all categories (from merchant_categories table)
+  // Load root categories
   useEffect(() => {
     let mounted = true;
     (async () => {
       try {
         setLoadingCats(true);
         const res = await getAllCategories();
-        if (!mounted) return;
-        if (!Array.isArray(res) || res.length === 0) {
-          setAllCategories([]);
-          return;
-        }
-        const normalized = res.map((c) =>
-          typeof c === "string" ? c : c.name ?? c.category_name ?? String(c.id)
-        );
-
-        setAllCategories(normalized);
-      } catch (err) {
-        console.error("Could not fetch categories:", err);
-        setAllCategories([]);
+        if (mounted) setAllCategories(Array.isArray(res) ? res : []);
+      } catch {
+        if (mounted) setAllCategories([]);
       } finally {
         if (mounted) setLoadingCats(false);
       }
@@ -170,6 +132,29 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
       mounted = false;
     };
   }, []);
+
+  // Load subcategories when categoryId changes
+  useEffect(() => {
+    if (!categoryId) {
+      setAllSubcategories([]);
+      return;
+    }
+    let mounted = true;
+    (async () => {
+      setLoadingSubs(true);
+      try {
+        const res = await getSubcategoriesByCategoryId(categoryId);
+        if (mounted) setAllSubcategories(Array.isArray(res) ? res : []);
+      } catch {
+        if (mounted) setAllSubcategories([]);
+      } finally {
+        if (mounted) setLoadingSubs(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [categoryId]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -180,14 +165,13 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
     setLogo(file || null);
     if (logoPreview && logoPreview.startsWith("blob:"))
       URL.revokeObjectURL(logoPreview);
-    if (file) setLogoPreview(URL.createObjectURL(file));
-    else setLogoPreview(form?.logo_url || "");
+    setLogoPreview(file ? URL.createObjectURL(file) : form?.logo_url || "");
   };
 
   const addCategory = () => {
     const v = (categoryInput || "").trim();
-    if (!v) return;
-    setCategories((arr) => (arr.includes(v) ? arr : [...arr, v]));
+    if (!v || categories.includes(v)) return;
+    setCategories((arr) => [...arr, v]);
     setCategoryInput("");
   };
   const removeCategory = (v) =>
@@ -273,7 +257,6 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (saving) return;
-
     setSaving(true);
     const fd = new FormData();
     fd.append("name", form.name || "");
@@ -305,15 +288,15 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
     fd.append("is_header_2", String(!!form.is_header_2));
     fd.append(
       "coupon_icon_visibility",
-      form.coupon_icon_visibility || "visible"
+      form.coupon_icon_visibility || "visible",
     );
     fd.append(
       "store_status_visibility",
-      form.store_status_visibility || "visible"
+      form.store_status_visibility || "visible",
     );
-
+    fd.append("category_id", categoryId || "");
+    fd.append("subcategory_id", subcategoryId || "");
     if (logo) fd.append("logo", logo);
-
     fd.append("category_names", JSON.stringify(categories));
     fd.append("brand_categories", JSON.stringify(brandCategories));
     fd.append("coupon_h2_blocks", JSON.stringify(couponH2Blocks));
@@ -333,17 +316,14 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
     }
   };
 
-  // ✅ Custom image handler with ref forwarding
   const imageHandler = () => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
     input.click();
-
     input.onchange = async () => {
       const file = input.files?.[0];
       if (!file) return;
-
       try {
         const url = await uploadMerchantImage(file);
         if (url) {
@@ -367,11 +347,10 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
     "italic",
     "underline",
     "strike",
-    "list", // ← only "list" here; toolbar still shows ordered/bullet
+    "list",
     "link",
     "image",
   ];
-
   const modules = {
     toolbar: {
       container: [
@@ -383,11 +362,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
       ],
       handlers: { image: imageHandler },
     },
-    history: {
-      delay: 500,
-      maxStack: 200,
-      userOnly: true,
-    },
+    history: { delay: 500, maxStack: 200, userOnly: true },
     keyboard: {
       bindings: {
         undo: {
@@ -416,21 +391,17 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
     },
   };
 
-  // ✅ Harden undo/redo with a direct keydown fallback on the editor root
   useEffect(() => {
     const editor = quillRef.current?.getEditor?.();
     if (!editor) return;
-
     const root = editor.root;
     const history = editor.getModule("history");
     const isMac =
       typeof navigator !== "undefined" &&
       /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-
     const onKeyDown = (e) => {
       const ctrlOrCmd = isMac ? e.metaKey : e.ctrlKey;
       if (!ctrlOrCmd) return;
-
       const key = e.key?.toLowerCase?.();
       if (key === "z" && !e.shiftKey) {
         e.preventDefault();
@@ -440,12 +411,10 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
         history.redo();
       }
     };
-
     root.addEventListener("keydown", onKeyDown);
     return () => root.removeEventListener("keydown", onKeyDown);
   }, [quillRef]);
 
-  // close on ESC
   useEscClose(onClose);
 
   if (loading || !form) {
@@ -489,23 +458,69 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
             />
           </div>
 
-          {/* Categories dropdown + add */}
+          {/* Category ID + Subcategory ID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block mb-1">Category</label>
+              <select
+                value={categoryId}
+                onChange={(e) => {
+                  setCategoryId(e.target.value);
+                  setSubcategoryId("");
+                }}
+                className="w-full border px-3 py-2 rounded"
+                disabled={loadingCats}
+              >
+                <option value="">
+                  {loadingCats ? "Loading…" : "Select category"}
+                </option>
+                {allCategories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block mb-1">Subcategory</label>
+              <select
+                value={subcategoryId}
+                onChange={(e) => setSubcategoryId(e.target.value)}
+                className="w-full border px-3 py-2 rounded"
+                disabled={!categoryId || loadingSubs}
+              >
+                <option value="">
+                  {!categoryId
+                    ? "Select category first"
+                    : loadingSubs
+                      ? "Loading…"
+                      : "Select subcategory"}
+                </option>
+                {allSubcategories.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Category Names (legacy tags) */}
           <div>
-            <label className="block mb-1">Category</label>
+            <label className="block mb-1">Category Names (tags)</label>
             <div className="flex gap-2">
               <select
                 value={categoryInput}
                 onChange={(e) => setCategoryInput(e.target.value)}
                 className="flex-1 border px-3 py-2 rounded"
                 disabled={loadingCats}
-                aria-label="Select category to add"
               >
                 <option value="">
                   {loadingCats ? "Loading categories…" : "Select a category"}
                 </option>
                 {allCategories.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
+                  <option key={c.id} value={c.name}>
+                    {c.name}
                   </option>
                 ))}
               </select>
@@ -634,7 +649,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
             />
           </div>
 
-          {/* Rich text blocks */}
+          {/* Rich text */}
           <div>
             <label className="block mb-1">Side Description</label>
             <textarea
@@ -647,13 +662,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
           </div>
           <div>
             <label className="block mb-1">Description</label>
-            <div
-              className="
-                min-h-[400px] border rounded bg-white
-                [&_.ql-container]:min-h-[400px]
-                [&_.ql-editor]:min-h-[400px]
-                [&_.ql-editor]:overflow-y-auto"
-            >
+            <div className="min-h-[400px] border rounded bg-white [&_.ql-container]:min-h-[400px] [&_.ql-editor]:min-h-[400px] [&_.ql-editor]:overflow-y-auto">
               <SafeQuill
                 ref={quillRef}
                 theme="snow"
@@ -677,8 +686,6 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
               className="w-full border px-3 py-2 rounded"
             />
           </div>
-
-          {/* Ads Description + Brand Category */}
           <div>
             <label className="block mb-1">Ads Description</label>
             <textarea
@@ -690,6 +697,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
             />
           </div>
 
+          {/* Brand Category */}
           <div>
             <div className="flex gap-2 items-end">
               <div className="flex-1">
@@ -728,7 +736,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
               </div>
             )}
             <div className="mt-3">
-              <label className="block mb-1">Ads Description</label>
+              <label className="block mb-1">Ads Description Label</label>
               <input
                 name="ads_description_label"
                 value={form.ads_description_label}
@@ -752,7 +760,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
             <Bool name="show_at_search_bar" label="Show at Search Bar" />
             <Bool name="extension_active" label="Extension Active" />
             <Bool name="extension_mandatory" label="Extension Mandatory" />
-            <Bool name="is_header_2" label="Is Header" />
+            <Bool name="is_header_2" label="Is Header 2" />
           </div>
 
           {/* Radios */}
@@ -877,7 +885,7 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
             )}
           </div>
 
-          {/* Q&A */}
+          {/* FAQs */}
           <div className="border rounded p-3">
             <div className="font-medium mb-2">Store Question and Answers</div>
             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -969,7 +977,6 @@ export default function EditMerchantModal({ merchantId, onClose, onSave }) {
             <button
               type="submit"
               disabled={saving}
-              aria-busy={saving}
               className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
             >
               {saving ? "Saving..." : "Save Changes"}

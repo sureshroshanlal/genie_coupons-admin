@@ -1,6 +1,5 @@
 import { supabase } from "../dbhelper/dbclient.js";
 
-// Normalize slug
 const toSlug = (s) =>
   String(s || "")
     .trim()
@@ -9,7 +8,6 @@ const toSlug = (s) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-// Ensure unique slug on create
 export async function ensureUniqueSlug(base) {
   const seed = toSlug(base || "merchant");
   let slug = seed;
@@ -26,7 +24,6 @@ export async function ensureUniqueSlug(base) {
   return `${seed}-${Date.now()}`;
 }
 
-// Ensure unique slug on update (exclude current id)
 export async function ensureUniqueSlugOnUpdate(id, proposed) {
   const seed = toSlug(proposed || "merchant");
   let slug = seed;
@@ -44,55 +41,24 @@ export async function ensureUniqueSlugOnUpdate(id, proposed) {
   return `${seed}-${Date.now()}`;
 }
 
-// List with filters + pagination
+const SELECT_COLS = `
+  id, name, slug, web_url, aff_url, tracker_lock, h1keyword,
+  meta_title, meta_keywords, meta_description,
+  side_description_html, description_html, table_content_html,
+  ads_description_html, ads_description_label,
+  sidebar, home, ads_block_all, ads_block_banners, is_header,
+  deals_home, tag_home, amazon_store, active, show_at_search_bar,
+  extension_active, extension_mandatory, is_header_2,
+  coupon_icon_visibility, store_status_visibility,
+  logo_url, top_banner_url, side_banner_url,
+  category_names, brand_categories, coupon_h2_blocks, coupon_h3_blocks,
+  faqs, suggestions, views, created_at, updated_at,
+  category_id, subcategory_id
+`;
+
 export async function list({ name = "", page = 1, limit = 20 } = {}) {
   const from = (page - 1) * limit;
   const to = from + limit - 1;
-
-  const selectCols = `
-    id,
-    name,
-    slug,
-	  web_url,
-    aff_url,
-    tracker_lock,
-	  h1keyword,
-    meta_title,
-    meta_keywords,
-    meta_description,
-	  side_description_html,
-    description_html,
-    table_content_html,
-    ads_description_html,
-    ads_description_label,
-	  sidebar,
-    home,
-    ads_block_all,
-    ads_block_banners,
-    is_header,
-    deals_home,
-    tag_home,
-    amazon_store,
-    active,
-    show_at_search_bar,
-    extension_active,
-    extension_mandatory,
-    is_header_2,
-    coupon_icon_visibility,
-    store_status_visibility,
-    logo_url,
-    top_banner_url,
-    side_banner_url,
-    category_names,
-    brand_categories,
-    coupon_h2_blocks,
-    coupon_h3_blocks,
-    faqs,
-    suggestions,
-    views,
-    created_at,
-    updated_at
-  `;
 
   let countQuery = supabase
     .from("merchants")
@@ -103,7 +69,7 @@ export async function list({ name = "", page = 1, limit = 20 } = {}) {
 
   let query = supabase
     .from("merchants")
-    .select(selectCols)
+    .select(SELECT_COLS)
     .order("created_at", { ascending: false })
     .range(from, to);
   if (name) query = query.ilike("name", `%${name}%`);
@@ -115,79 +81,30 @@ export async function list({ name = "", page = 1, limit = 20 } = {}) {
 }
 
 export async function getById(id) {
-  const selectCols = `
-    id,
-    name,
-    slug,
-	  web_url,
-    aff_url,
-    tracker_lock,
-	  h1keyword,
-    meta_title,
-    meta_keywords,
-    meta_description,
-	  side_description_html,
-    description_html,
-    table_content_html,
-    ads_description_html,
-    ads_description_label,
-	  sidebar,
-    home,
-    ads_block_all,
-    ads_block_banners,
-    is_header,
-    deals_home,
-    tag_home,
-    amazon_store,
-    active,
-    show_at_search_bar,
-    extension_active,
-    extension_mandatory,
-    is_header_2,
-    coupon_icon_visibility,
-    store_status_visibility,
-    logo_url,
-    top_banner_url,
-    side_banner_url,
-    category_names,
-    brand_categories,
-    coupon_h2_blocks,
-    coupon_h3_blocks,
-    faqs,
-    suggestions,
-    views,
-    created_at,
-    updated_at
-  `;
   const { data, error } = await supabase
     .from("merchants")
-    .select(selectCols)
+    .select(SELECT_COLS)
     .eq("id", id)
     .single();
   if (error) throw error;
   return data;
 }
 
-// Insert
 export async function insert(payload) {
-  const toInsert = { ...payload };
   const { data, error } = await supabase
     .from("merchants")
-    .insert(toInsert)
+    .insert({ ...payload })
     .select()
     .single();
   if (error) throw error;
   return data;
 }
 
-// Update (drops undefined keys)
 export async function update(id, patch) {
   const clean = Object.fromEntries(
-    Object.entries(patch).filter(([, v]) => v !== undefined)
+    Object.entries(patch).filter(([, v]) => v !== undefined),
   );
-  if (Object.keys(clean).length === 0) {
-    return await getById(id);
-  }
+  if (Object.keys(clean).length === 0) return await getById(id);
   const { data, error } = await supabase
     .from("merchants")
     .update(clean)
@@ -198,7 +115,6 @@ export async function update(id, patch) {
   return data;
 }
 
-// Toggle status (active/inactive)
 export async function toggleStatus(id) {
   const { data: cur, error: ge } = await supabase
     .from("merchants")
@@ -206,10 +122,9 @@ export async function toggleStatus(id) {
     .eq("id", id)
     .single();
   if (ge) throw ge;
-  const next = !cur?.is_publish;
   const { data, error } = await supabase
     .from("merchants")
-    .update({ is_publish: next })
+    .update({ is_publish: !cur?.is_publish })
     .eq("id", id)
     .select()
     .single();
@@ -217,7 +132,6 @@ export async function toggleStatus(id) {
   return data;
 }
 
-// Remove row
 export async function remove(id) {
   const { error } = await supabase.from("merchants").delete().eq("id", id);
   if (error) throw error;
@@ -228,7 +142,6 @@ export async function count() {
   const { count, error } = await supabase
     .from("merchants")
     .select("*", { count: "exact", head: true });
-
   if (error) throw error;
   return count ?? 0;
 }

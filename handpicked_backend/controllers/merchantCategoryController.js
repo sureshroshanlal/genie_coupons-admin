@@ -13,15 +13,12 @@ const toInt = (v, d = 0) => {
   return Number.isFinite(n) ? n : d;
 };
 
-//to validate if parentId is existing or not
 export async function assertValidParentId(parentId, selfId = null) {
-  if (parentId == null) return null; // allow null
+  if (parentId == null) return null;
   const pid = Number(parentId);
   if (!Number.isFinite(pid)) throw new Error("Invalid parent_id");
-  if (selfId != null && Number(selfId) === pid) {
+  if (selfId != null && Number(selfId) === pid)
     throw new Error("A category cannot be its own parent");
-  }
-  // Ensure parent exists
   const parent = await mcRepo.getById(pid);
   if (!parent?.id) throw new Error("Parent category not found");
   return pid;
@@ -34,8 +31,15 @@ export async function listCategories(req, res) {
     const limit = Math.min(100, Math.max(1, toInt(req.query?.limit || 20, 20)));
     const includeStoreCount = req.query?.include_store_count === "true";
 
+    // parent_id: "null" → root only; numeric string → subcategories; absent → all
+    let parent_id = undefined;
+    if (req.query.parent_id !== undefined) {
+      parent_id = req.query.parent_id === "null" ? null : req.query.parent_id;
+    }
+
     const filter = {
       name,
+      parent_id,
       show_home:
         req.query?.show_home !== undefined
           ? toBool(req.query.show_home)
@@ -56,7 +60,6 @@ export async function listCategories(req, res) {
 
     const { rows, total } = await mcRepo.list({ ...filter, page, limit });
 
-    // Optionally decorate rows with store_count (N+1; acceptable for admin pages)
     let enriched = rows;
     if (includeStoreCount && Array.isArray(rows) && rows.length) {
       enriched = await Promise.all(
@@ -66,30 +69,21 @@ export async function listCategories(req, res) {
             .from("merchants")
             .select("id", { count: "exact", head: true })
             .contains("category_names", [r.name]);
-          if (error) {
-            console.error(
-              "store_count failed for category",
-              r.id,
-              error?.message || error
-            );
-            return { ...r, store_count: 0 };
-          }
+          if (error) return { ...r, store_count: 0 };
           return { ...r, store_count: count || 0 };
-        })
+        }),
       );
     }
 
     return res.json({ data: { rows: enriched, total }, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error listing categories",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error listing categories",
+        details: err?.message || err,
+      },
+    });
   }
 }
 
@@ -114,7 +108,6 @@ export async function createCategory(req, res) {
     const b = req.body || {};
     const f = req.files || {};
 
-    // Validate parent first (if provided)
     let parentId = null;
     if (b.parent_id) {
       try {
@@ -149,7 +142,7 @@ export async function createCategory(req, res) {
         FOLDER,
         thumbFile.buffer,
         thumbFile.originalname,
-        thumbFile.mimetype
+        thumbFile.mimetype,
       );
       if (error)
         return res.status(500).json({
@@ -158,7 +151,6 @@ export async function createCategory(req, res) {
         });
       toInsert.thumb_url = url;
     }
-
     const topFile = f.tp_banner?.[0];
     if (topFile) {
       const { url, error } = await uploadImageBuffer(
@@ -166,7 +158,7 @@ export async function createCategory(req, res) {
         FOLDER,
         topFile.buffer,
         topFile.originalname,
-        topFile.mimetype
+        topFile.mimetype,
       );
       if (error)
         return res.status(500).json({
@@ -175,7 +167,6 @@ export async function createCategory(req, res) {
         });
       toInsert.top_banner_url = url;
     }
-
     const sideFile = f.side_banner?.[0];
     if (sideFile) {
       const { url, error } = await uploadImageBuffer(
@@ -183,7 +174,7 @@ export async function createCategory(req, res) {
         FOLDER,
         sideFile.buffer,
         sideFile.originalname,
-        sideFile.mimetype
+        sideFile.mimetype,
       );
       if (error)
         return res.status(500).json({
@@ -212,10 +203,8 @@ export async function updateCategory(req, res) {
     const b = req.body || {};
     const f = req.files || {};
 
-    // Load current to know which files to clean up if replaced/removed
     const cur = await mcRepo.getById(id);
 
-    // Validate parent (only if provided in payload)
     let parentIdPatch = undefined;
     if (b.parent_id !== undefined) {
       if (b.parent_id) {
@@ -227,7 +216,7 @@ export async function updateCategory(req, res) {
             .json({ data: null, error: { message: e.message } });
         }
       } else {
-        parentIdPatch = null; // explicit clear
+        parentIdPatch = null;
       }
     }
 
@@ -260,8 +249,6 @@ export async function updateCategory(req, res) {
     }
 
     const toDelete = [];
-
-    // Explicit removals
     if (toBool(b.remove_thumb) && cur?.thumb_url) {
       patch.thumb_url = null;
       toDelete.push(cur.thumb_url);
@@ -275,7 +262,6 @@ export async function updateCategory(req, res) {
       toDelete.push(cur.side_banner_url);
     }
 
-    // Upload replacements (NOTE: multer .fields() provides arrays -> use [0])
     const thumbFile = f.thumb?.[0];
     if (thumbFile) {
       const { url, error } = await uploadImageBuffer(
@@ -283,7 +269,7 @@ export async function updateCategory(req, res) {
         FOLDER,
         thumbFile.buffer,
         thumbFile.originalname,
-        thumbFile.mimetype
+        thumbFile.mimetype,
       );
       if (error)
         return res.status(500).json({
@@ -293,7 +279,6 @@ export async function updateCategory(req, res) {
       if (cur?.thumb_url) toDelete.push(cur.thumb_url);
       patch.thumb_url = url;
     }
-
     const topFile = f.top_banner?.[0];
     if (topFile) {
       const { url, error } = await uploadImageBuffer(
@@ -301,7 +286,7 @@ export async function updateCategory(req, res) {
         FOLDER,
         topFile.buffer,
         topFile.originalname,
-        topFile.mimetype
+        topFile.mimetype,
       );
       if (error)
         return res.status(500).json({
@@ -311,7 +296,6 @@ export async function updateCategory(req, res) {
       if (cur?.top_banner_url) toDelete.push(cur.top_banner_url);
       patch.top_banner_url = url;
     }
-
     const sideFile = f.side_banner?.[0];
     if (sideFile) {
       const { url, error } = await uploadImageBuffer(
@@ -319,7 +303,7 @@ export async function updateCategory(req, res) {
         FOLDER,
         sideFile.buffer,
         sideFile.originalname,
-        sideFile.mimetype
+        sideFile.mimetype,
       );
       if (error)
         return res.status(500).json({
@@ -331,15 +315,13 @@ export async function updateCategory(req, res) {
     }
 
     const updated = await mcRepo.update(id, patch);
-
-    // Best-effort cleanup AFTER successful update
     if (toDelete.length) {
       try {
         await deleteFilesByUrls(BUCKET, toDelete);
       } catch (fileErr) {
         console.error(
-          "Category file cleanup (update) failed:",
-          fileErr?.message || fileErr
+          "Category file cleanup failed:",
+          fileErr?.message || fileErr,
         );
       }
     }
@@ -375,32 +357,27 @@ export async function updateCategoryStatus(req, res) {
 export async function deleteCategory(req, res) {
   try {
     const { id } = req.params;
-
     const c = await mcRepo.getById(id);
     if (!c)
       return res
         .status(404)
         .json({ data: null, error: { message: "Category not found" } });
-
     const urls = [c.thumb_url, c.top_banner_url, c.side_banner_url].filter(
-      Boolean
+      Boolean,
     );
     try {
       if (urls.length) await deleteFilesByUrls(BUCKET, urls);
     } catch (fileErr) {
       console.error(
         "Category file deletion failed:",
-        fileErr?.message || fileErr
+        fileErr?.message || fileErr,
       );
-      // choose to proceed; change policy if strict consistency required
     }
-
     const ok = await mcRepo.remove(id);
     if (!ok)
       return res
         .status(500)
         .json({ data: null, error: { message: "Failed to delete category" } });
-
     return res.json({ data: { id, deleted_files: urls.length }, error: null });
   } catch (err) {
     return res.status(500).json({

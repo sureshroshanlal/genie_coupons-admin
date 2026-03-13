@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   addCoupon,
   getCoupon,
@@ -12,9 +12,9 @@ export default function CouponModal({ id, onClose }) {
 
   const [form, setForm] = useState({
     store_id: "",
-    coupon_type: "coupon", // 'coupon' | 'deal'
+    coupon_type: "coupon",
     title: "",
-    h_block: "", // H2/H3 selection or key
+    h_block: "",
     coupon_code: "",
     aff_url: "",
     description: "",
@@ -32,59 +32,33 @@ export default function CouponModal({ id, onClose }) {
     level: "",
     home: false,
     is_brand_coupon: false,
-    is_publish: true, // <-- default true
+    is_publish: true,
   });
 
-  const [stores, setStores] = useState([]);
-  const [storesLoading, setStoresLoading] = useState(false);
-  const [storesError, setStoresError] = useState(null);
+  const [availableCategories, setAvailableCategories] = useState([]);
+
+  // Store async search
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
+  const searchRef = useRef(null);
+
   const [logoFile, setLogoFile] = useState(null);
   const [proofFile, setProofFile] = useState(null);
   const [busy, setBusy] = useState(false);
-  const [availableCategories, setAvailableCategories] = useState([]);
 
-  // Lock body scroll like your Merchants modal does
   useEffect(() => {
     document.body.classList.add("modal-open");
     return () => document.body.classList.remove("modal-open");
   }, []);
 
-  // Load stores from DB with loading & error handling
-  useEffect(() => {
-    (async () => {
-      setStoresLoading(true);
-      setStoresError(null);
-      try {
-        const res = await listMerchants(); // from merchantService
-        if (res?.data) {
-          const processedStores = res.data.map((m) => ({
-            id: String(m.id),
-            name: m.name,
-            aff_url: m.aff_url || "",
-            website: m.web_url || "",
-            categories: m.category_names || [],
-          }));
-          setStores(processedStores);
-        } else {
-          setStores([]);
-        }
-      } catch (err) {
-        console.error("Failed to load merchants:", err);
-        setStoresError("Failed to load stores");
-      } finally {
-        setStoresLoading(false);
-      }
-    })();
-  }, []);
-
+  // Load coupon (EDIT)
   useEffect(() => {
     if (!isEdit) return;
-
     (async () => {
       try {
         const result = await getCoupon(id);
-        console.log("Edit API result:", result);
-
         if (!result) return;
         setForm({
           store_id: String(result.merchant_id ?? ""),
@@ -109,13 +83,68 @@ export default function CouponModal({ id, onClose }) {
           home: Boolean(result.home),
           is_brand_coupon: !!result.is_brand_coupon,
           is_publish:
-            result.is_publish !== undefined ? !!result.is_publish : true, // respect existing or default true
+            result.is_publish !== undefined ? !!result.is_publish : true,
         });
+        setSearch(result.merchant_name || "");
+        setAvailableCategories(result.category_names || []);
       } catch (err) {
         console.error(err);
       }
     })();
   }, [id, isEdit]);
+
+  // Async store search
+  useEffect(() => {
+    if (search.length < 3) {
+      setSearchResults([]);
+      return;
+    }
+    (async () => {
+      setSearchLoading(true);
+      const res = await listMerchants({ name: search, limit: 10 });
+      setSearchResults(
+        (res?.data || []).map((m) => ({
+          id: String(m.id),
+          name: m.name,
+          aff_url: m.aff_url || "",
+          website: m.web_url || "",
+          categories: m.category_names || [],
+        })),
+      );
+      setHighlightIndex(-1);
+      setSearchLoading(false);
+    })();
+  }, [search]);
+
+  const selectStore = (store) => {
+    setForm((prev) => ({
+      ...prev,
+      store_id: store.id,
+      aff_url: store.aff_url || store.website || "",
+      category_id: store.categories?.[0] || prev.category_id,
+    }));
+    setAvailableCategories(store.categories || []);
+    setSearch(store.name);
+    setSearchResults([]);
+    setHighlightIndex(-1);
+  };
+
+  const onSearchKeyDown = (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightIndex((i) => Math.min(i + 1, searchResults.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightIndex((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter" && highlightIndex >= 0) {
+      e.preventDefault();
+      selectStore(searchResults[highlightIndex]);
+    } else if (e.key === "Escape") {
+      setSearch("");
+      setSearchResults([]);
+      setHighlightIndex(-1);
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -127,10 +156,8 @@ export default function CouponModal({ id, onClose }) {
         if (v === null || v === undefined) return;
         fd.append(k, typeof v === "boolean" ? String(v) : String(v));
       });
-      // assign click_count randomly between 400 and 600 for new coupons
       if (!isEdit) {
-        const rand = Math.floor(Math.random() * (600 - 400 + 1)) + 400;
-        fd.append("click_count", String(rand));
+        fd.append("click_count", String(Math.floor(Math.random() * 201) + 400));
       }
       if (logoFile) fd.append("image", logoFile);
       if (proofFile) fd.append("proof_image", proofFile);
@@ -146,7 +173,6 @@ export default function CouponModal({ id, onClose }) {
     }
   };
 
-  // close on ESC
   useEscClose(onClose);
 
   return (
@@ -162,44 +188,39 @@ export default function CouponModal({ id, onClose }) {
         </div>
 
         <form onSubmit={onSubmit} className="space-y-4">
-          {/* Store */}
+          {/* Store search */}
           <div>
             <label className="block mb-1">Store</label>
-            {storesLoading ? (
-              <div className="text-gray-500 text-sm">Loading stores...</div>
-            ) : storesError ? (
-              <div className="text-red-500 text-sm">{storesError}</div>
-            ) : (
-              <select
-                value={form.store_id}
-                onChange={(e) => {
-                  const storeId = e.target.value;
-                  setForm({ ...form, store_id: storeId });
-
-                  const selectedStore = stores.find((s) => s.id === storeId);
-                  if (selectedStore) {
-                    setForm((prev) => ({
-                      ...prev,
-                      aff_url:
-                        selectedStore.aff_url || selectedStore.website || "",
-                      category_id:
-                        selectedStore.categories?.[0] || prev.category_id,
-                    }));
-                    setAvailableCategories(selectedStore.categories || []);
-                  } else {
-                    setAvailableCategories([]);
-                  }
-                }}
+            <div className="relative">
+              <input
+                ref={searchRef}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={onSearchKeyDown}
+                placeholder="Type at least 3 characters…"
                 className="w-full border px-3 py-2 rounded"
-              >
-                <option value="">Select store</option>
-                {stores.map((store) => (
-                  <option key={store.id} value={store.id}>
-                    {store.name}
-                  </option>
-                ))}
-              </select>
-            )}
+              />
+              {searchLoading && (
+                <div className="text-xs text-gray-500 mt-1">Searching…</div>
+              )}
+              {searchResults.length > 0 && (
+                <div className="absolute z-10 bg-white border w-full max-h-60 overflow-y-auto rounded shadow">
+                  {searchResults.map((s, i) => (
+                    <div
+                      key={s.id}
+                      className={`px-3 py-2 cursor-pointer ${
+                        i === highlightIndex
+                          ? "bg-blue-100"
+                          : "hover:bg-gray-50"
+                      }`}
+                      onMouseDown={() => selectStore(s)}
+                    >
+                      {s.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Coupon or Deal */}
@@ -227,7 +248,7 @@ export default function CouponModal({ id, onClose }) {
             />
           </div>
 
-          {/* Select H2 or H3 */}
+          {/* H2/H3 */}
           <div>
             <label className="block mb-1">Select H2 or H3</label>
             <select
@@ -236,11 +257,10 @@ export default function CouponModal({ id, onClose }) {
               className="w-full border px-3 py-2 rounded"
             >
               <option value="">--Select--</option>
-              {/* TODO: populate H2/H3 options */}
             </select>
           </div>
 
-          {/* Coupon Code (only when type = coupon) */}
+          {/* Coupon Code */}
           {form.coupon_type === "coupon" && (
             <div>
               <label className="block mb-1">Coupon Code</label>
@@ -254,7 +274,7 @@ export default function CouponModal({ id, onClose }) {
             </div>
           )}
 
-          {/* Website or Affiliate URL */}
+          {/* Affiliate URL */}
           <div>
             <label className="block mb-1">Website or Affiliate URL</label>
             <input
@@ -287,8 +307,7 @@ export default function CouponModal({ id, onClose }) {
               className="block"
             />
             <div className="text-xs text-gray-500 mt-1">
-              jpg & png image only; max-width:122px; max-height:54px;
-              max-size:2MB
+              jpg &amp; png only; max-width:122px; max-height:54px; max-size:2MB
             </div>
           </div>
 
@@ -301,7 +320,6 @@ export default function CouponModal({ id, onClose }) {
               className="w-full border px-3 py-2 rounded"
             >
               <option value="">None Selected</option>
-              {/* TODO: populate filters */}
             </select>
           </div>
 
@@ -324,7 +342,7 @@ export default function CouponModal({ id, onClose }) {
             </select>
           </div>
 
-          {/* Proof image + Show proof */}
+          {/* Proof image */}
           <div>
             <label className="block mb-1">Proof image</label>
             <input
@@ -334,7 +352,7 @@ export default function CouponModal({ id, onClose }) {
               className="block"
             />
             <div className="text-xs text-gray-500 mt-1">
-              jpg & png image only; max-width:650px; max-height:350px;
+              jpg &amp; png only; max-width:650px; max-height:350px;
               max-size:2MB
             </div>
             <label className="inline-flex items-center gap-2 mt-2">
@@ -349,7 +367,7 @@ export default function CouponModal({ id, onClose }) {
             </label>
           </div>
 
-          {/* Expiry/Schedule */}
+          {/* Expiry / Schedule */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block mb-1">Expiry Date</label>
@@ -406,7 +424,7 @@ export default function CouponModal({ id, onClose }) {
             </div>
           </div>
 
-          {/* Coupon Type + Special Message Type */}
+          {/* Coupon Style + Special Message Type */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block mb-1">Coupon Type</label>
@@ -418,7 +436,6 @@ export default function CouponModal({ id, onClose }) {
                 className="w-full border px-3 py-2 rounded"
               >
                 <option value="custom">Custom</option>
-                {/* Add more styles if needed */}
               </select>
             </div>
             <div>
@@ -431,7 +448,6 @@ export default function CouponModal({ id, onClose }) {
                 className="w-full border px-3 py-2 rounded"
               >
                 <option value="">None</option>
-                {/* Add options */}
               </select>
             </div>
           </div>
@@ -456,12 +472,11 @@ export default function CouponModal({ id, onClose }) {
                 className="w-full border px-3 py-2 rounded"
               >
                 <option value="">None</option>
-                {/* Add options */}
               </select>
             </div>
           </div>
 
-          {/* Level + Display in home */}
+          {/* Level + Home */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block mb-1">Level</label>
@@ -471,7 +486,6 @@ export default function CouponModal({ id, onClose }) {
                 className="w-full border px-3 py-2 rounded"
               >
                 <option value="">None</option>
-                {/* Add options */}
               </select>
             </div>
             <div>
@@ -487,7 +501,7 @@ export default function CouponModal({ id, onClose }) {
             </div>
           </div>
 
-          {/* Is Brand Coupon? */}
+          {/* Is Brand Coupon */}
           <div>
             <label className="block mb-1">Is Brand Coupon?</label>
             <label className="inline-flex items-center gap-2">
@@ -502,7 +516,7 @@ export default function CouponModal({ id, onClose }) {
             </label>
           </div>
 
-          {/* Publish toggle (default true) */}
+          {/* Publish */}
           <div>
             <label className="block mb-1">Publish?</label>
             <label className="inline-flex items-center gap-2">
@@ -517,7 +531,6 @@ export default function CouponModal({ id, onClose }) {
             </label>
           </div>
 
-          {/* Footer actions */}
           <div className="flex justify-end">
             <button
               type="submit"

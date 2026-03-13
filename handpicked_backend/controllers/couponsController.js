@@ -196,6 +196,8 @@ export async function updateCoupon(req, res) {
       home: b.home !== undefined ? toBool(b.home) : undefined,
       is_brand_coupon:
         b.is_brand_coupon !== undefined ? toBool(b.is_brand_coupon) : undefined,
+      // patch object is missing:
+      is_publish: b.is_publish !== undefined ? toBool(b.is_publish) : undefined,
     };
 
     if (f.image?.[0]) {

@@ -1,5 +1,5 @@
 // src/utils/importsExcelUtils.js
-import xlsx from "xlsx";
+import xlsx from "exceljs";
 
 export function normalizeBoolean(v) {
   if (v === true || v === false) return v;

@@ -1,5 +1,6 @@
 // src/dbhelper/CouponsRepo.js
 import { supabase } from "./dbclient.js";
+import { deleteFilesByUrls } from "../services/deleteFilesByUrl.js";
 
 function toInt(v) {
   const n = Number(v);
@@ -106,7 +107,7 @@ export async function insert(payload) {
 
 export async function update(id, patch) {
   const clean = Object.fromEntries(
-    Object.entries(patch).filter(([, v]) => v !== undefined)
+    Object.entries(patch).filter(([, v]) => v !== undefined),
   );
   if (!Object.keys(clean).length) {
     return await getById(id);
@@ -171,4 +172,78 @@ export async function countTopCoupons() {
 
   if (error) throw error;
   return count ?? 0;
+}
+
+// === Merchant Proofs ===
+
+// Fetch Proofs for a merchant with pagination
+export async function fetchMerchantProofs(merchantId, page = 1, limit = 10) {
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
+
+  const { data: rows, error } = await supabase
+    .from("merchant_proofs")
+    .select("*", { count: "exact" })
+    .eq("merchant_id", merchantId)
+    .order("created_at", { ascending: false })
+    .range(from, to);
+
+  if (error) throw error;
+
+  const { count, error: cErr } = await supabase
+    .from("merchant_proofs")
+    .select("id", { count: "exact", head: true })
+    .eq("merchant_id", merchantId);
+
+  if (cErr) throw cErr;
+
+  return { rows: rows || [], total: count || 0 };
+}
+
+// Delete a proof by ID
+export async function deleteProof(proofId, BUCKET) {
+  const { data: proof, error: fetchError } = await supabase
+    .from("merchant_proofs")
+    .select("id, image_url")
+    .eq("id", proofId)
+    .single();
+  if (fetchError) throw fetchError;
+
+  // 2. Delete from storage
+  let urls = [];
+  urls.push(proof.image_url);
+
+  try {
+    if (urls.length) await deleteFilesByUrls(BUCKET, urls);
+  } catch (fileErr) {
+    console.error(
+      "Merchant Proof deletion failed:",
+      fileErr?.message || fileErr,
+    );
+  }
+  const { error } = await supabase
+    .from("merchant_proofs")
+    .delete()
+    .eq("id", proofId);
+
+  if (error) throw error;
+  return true;
+}
+
+// Upload new proofs for a merchant
+export async function uploadProofs(merchantId, files) {
+  // files: array of { url, filename } or { buffer, originalname, mimetype }
+  const inserts = files.map((f) => ({
+    merchant_id: merchantId,
+    image_url: f.url,
+    filename: f.filename || f.originalname,
+  }));
+
+  const { data, error } = await supabase
+    .from("merchant_proofs")
+    .insert(inserts)
+    .select();
+
+  if (error) throw error;
+  return data;
 }

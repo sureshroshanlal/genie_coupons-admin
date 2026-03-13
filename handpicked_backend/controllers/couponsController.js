@@ -10,10 +10,11 @@ const WEBP_QUALITY = 80; // adjust 60-90 as you like
 const MAX_WIDTH = 1600; // optional resize, null to skip
 
 const toBool = (v) => v === true || v === "true" || v === "1";
+
 const toInt = (v, d = 0) => {
   const n = Number(v);
+  return Number.isFinite(n) ? n : d;
 };
-return Number.isFinite(n) ? n : d;
 
 // List
 export async function listCoupons(req, res) {

@@ -14,6 +14,7 @@ import merchantRoutes from "./routes/merchantRoutes.js";
 import merchantCategoryRoutes from "./routes/merchantCategoryRoutes.js";
 import importRoutes from "./routes/importRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import { supabase } from "./dbhelper/dbclient.js";
 
 dotenv.config();
 const app = express();
@@ -33,7 +34,7 @@ app.use(
     credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 204,
-  })
+  }),
 );
 app.options("/api/auth/login", cors());
 
@@ -58,6 +59,35 @@ app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Genie Coupon API" });
+});
+
+// Health endpoint with DB check
+app.get("/api/health", async (req, res) => {
+  const start = Date.now();
+  try {
+    const { error } = await supabase.from("merchants").select("id").limit(1);
+    const latency = Date.now() - start;
+    if (error) {
+      return res.status(503).json({
+        status: "unhealthy",
+        db: { status: "error", message: error.message },
+        latency_ms: latency,
+        timestamp: new Date().toISOString(),
+      });
+    }
+    return res.json({
+      status: "healthy",
+      db: { status: "ok", latency_ms: latency },
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err) {
+    return res.status(503).json({
+      status: "unhealthy",
+      db: { status: "error", message: err?.message || "Unknown error" },
+      latency_ms: Date.now() - start,
+      timestamp: new Date().toISOString(),
+    });
+  }
 });
 
 // 404 (after routes)

@@ -7,7 +7,7 @@ import {
   updateBanner,
   toggleActive,
   deleteBanner,
-} from "../controllers/adminBannersController.js";
+} from "../controllers/bannersController.js";
 
 const router = Router();
 const upload = multer({

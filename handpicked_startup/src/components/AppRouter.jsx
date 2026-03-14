@@ -14,6 +14,7 @@ import MerchantCategoriesPage from "./MerchantCategoriesPage.jsx";
 import StoresImportsPage from "./StoresImportPage.jsx";
 import CouponsListPage from "./CouponsListPage.jsx";
 import CouponsValidationPage from "./CouponsValidationPage.jsx";
+import BannersListPage from "./BannersListPage.jsx";
 
 export default function AppRouter() {
   const [isClient, setIsClient] = useState(false);
@@ -49,12 +50,19 @@ export default function AppRouter() {
           <Route path="blogs" element={<BlogsListPage />} />
           <Route path="blog-categories" element={<BlogCategoriesListPage />} />
           <Route path="authors" element={<AuthorsListPage />} />
-          <Route path="merchants" element={<MerchantListPage/>} />
-          <Route path="merchant-categories" element={<MerchantCategoriesPage />} />
+          <Route path="merchants" element={<MerchantListPage />} />
+          <Route
+            path="merchant-categories"
+            element={<MerchantCategoriesPage />}
+          />
+          <Route path="merchant-banners" element={<BannersListPage />} />
           <Route path="stepImports" element={<StoresImportsPage />} />
           <Route path="coupons" element={<CouponsListPage />} />
-          <Route path="coupons/validation" element={<CouponsValidationPage />} />
-           {/* More child screens here */}
+          <Route
+            path="coupons/validation"
+            element={<CouponsValidationPage />}
+          />
+          {/* More child screens here */}
         </Route>
 
         {/* Root redirect */}

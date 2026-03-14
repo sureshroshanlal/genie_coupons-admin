@@ -19,7 +19,6 @@
  * Force redo:   node 03_generator.js --force
  */
 
-import Groq from "groq-sdk";
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
@@ -95,8 +94,8 @@ const PROVIDERS = [
       const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
       const res = await groq.chat.completions.create({
         model: "llama-3.3-70b-versatile",
-        temperature: 0.6,
-        max_tokens: 8000,
+        temperature: 0.7,
+        max_tokens: 6000,
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },
@@ -119,13 +118,13 @@ const PROVIDERS = [
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "HTTP-Referer": "https://savingharbor.com",
+          "HTTP-Referer": "https://geniecoupon.com",
           "X-Title": "Genie Coupon Content Generator",
         },
         body: JSON.stringify({
           model: "meta-llama/llama-3.3-70b-instruct:free",
-          max_tokens: 8000,
-          temperature: 0.6,
+          max_tokens: 6000,
+          temperature: 0.7,
           messages: [
             { role: "system", content: systemPrompt },
             { role: "user", content: userPrompt },
@@ -351,9 +350,7 @@ function buildMetaTitle(ctx) {
     ctx.activeCoupons >= 5
       ? `${store} Coupons – ${ctx.activeCoupons} Verified Codes [${month}] | Genie Coupon`
       : null,
-    catNoun
-      ? `${store} ${catNoun} Coupons & Promo Codes | Genie Coupon`
-      : null,
+    catNoun ? `${store} ${catNoun} Coupons & Promo Codes | Genie Coupon` : null,
     `${store} Coupons & Promo Codes [${month}] | Genie Coupon`,
     `${store} Coupons & Promo Codes | Genie Coupon`,
   ].filter(Boolean);
@@ -372,7 +369,8 @@ Rules you never break:
 1. Return ONLY a valid JSON object. No markdown. No code fences. No text outside {}.
 2. Never invent facts. If data is missing, say so honestly using the exact phrase "not listed on their site".
 3. Never use these words: seamlessly, elevate, dive into, treasure trove, game-changer, curated, unlock savings, leverage, empower, in today's world, cutting-edge, robust.
-4. Write like a knowledgeable friend, not a press release.`;
+4. Write like a knowledgeable friend, not a press release.
+5. WORD COUNT IS MANDATORY: description_html must contain AT LEAST 700 visible words. Each of the 6 sections must be written in full — do not abbreviate, do not summarize. If a section feels short, add another paragraph. Responses with fewer than 700 words in description_html are REJECTED.`;
 
 // Build a guaranteed 6-item FAQ pool from available data — no hallucination
 function buildFaqs(ctx, store) {
@@ -490,7 +488,7 @@ STORE: ${store}
 URL: ${ctx.url}
 CATEGORIES: ${ctx.categories || "not specified"}
 ACTIVE COUPONS ON GENIE COUPON: ${ctx.activeCoupons}
-    
+
 HOMEPAGE DATA:
 - Meta description: ${ctx.metaDescription || "not found"}
 - Hero taglines: ${ctx.heroTaglines.slice(0, 5).join(" | ") || "none"}
@@ -891,28 +889,31 @@ async function generateContent(ctx, attempt = 1, forcedProvider = null) {
       return generateContent(ctx, attempt + 1, provider);
     }
 
-    // Check word count
+    // Check word count — if too short, try every other provider before giving up
     const wc = (parsed.description_html || "")
       .replace(/<[^>]+>/g, " ")
       .split(/\s+/)
       .filter(Boolean).length;
 
-    if (wc < 400 && attempt <= MAX_RETRIES) {
-      // Try next provider instead of retrying same — same model won't do better
+    if (wc < 400) {
       const nextProvider = PROVIDERS.find(
         (p) => p.available && !p.exhausted && p.name !== provider.name,
       );
-      if (nextProvider) {
+      if (nextProvider && attempt <= MAX_RETRIES) {
         console.log(
           `    🔄 Too short (${wc}w) — switching to ${nextProvider.name}`,
         );
-        return generateContent(ctx, attempt + 1, nextProvider);
+        return generateContent(ctx, attempt + 1, nextProvider); // attempt++ to prevent infinite loop
       }
-      console.log(
-        `    🔄 Too short (${wc}w) — retry ${attempt}/${MAX_RETRIES}`,
-      );
-      await new Promise((r) => setTimeout(r, 2000 * attempt));
-      return generateContent(ctx, attempt + 1, provider);
+      if (attempt <= MAX_RETRIES) {
+        // No other provider — retry same with delay
+        console.log(
+          `    🔄 Too short (${wc}w) — retry ${attempt}/${MAX_RETRIES}`,
+        );
+        await new Promise((r) => setTimeout(r, 3000 * attempt));
+        return generateContent(ctx, attempt + 1, provider);
+      }
+      // All retries exhausted — return what we have, let validator catch it
     }
 
     parsed.meta_title = buildMetaTitle(ctx);
@@ -987,16 +988,18 @@ async function main() {
     console.log(`📋 Resuming — ${existingGenerated.length} already attempted`);
   }
 
-  const skipIds = new Set(
+  const skipSlugs = new Set(
     FORCE
       ? []
       : existingGenerated
           .filter((r) => (RETRY_FAILED ? !r.error : true))
-          .map((r) => r.id?.toString()),
+          .map((r) => r.slug?.toString())
+          .filter(Boolean),
   );
 
   let merchants = allScraped.filter((m) => {
-    if (skipIds.has(m.id?.toString())) return false;
+    const slug = m.slug || m.name?.toLowerCase().replace(/\s+/g, "-");
+    if (skipSlugs.has(slug)) return false;
     if (TIER && m.tier !== TIER) return false;
     return true;
   });
@@ -1062,9 +1065,10 @@ async function main() {
                 content_status: "failed",
                 generation_error: `content too short: ${wc}w`,
               })
-              .eq("id", m.id);
+              .eq("slug", m.slug || m.name.toLowerCase().replace(/\s+/g, "-"));
           } catch (_) {}
           results.push({
+            slug: m.slug || m.name.toLowerCase().replace(/\s+/g, "-"),
             id: m.id,
             name: m.name,
             tier: m.tier,
@@ -1075,6 +1079,7 @@ async function main() {
         } else if (BLOCK_ISSUES && issues.length) {
           console.log(`    ⛔ Blocked: ${issues.join("; ")}`);
           results.push({
+            slug: m.slug || m.name.toLowerCase().replace(/\s+/g, "-"),
             id: m.id,
             name: m.name,
             tier: m.tier,
@@ -1083,30 +1088,34 @@ async function main() {
           });
           saveProgress(results);
         } else {
-          // ── Push to DB ──────────────────────────────────────────────────
+          // ── Push to DB — use slug as the key (CSV IDs don't match DB IDs) ──
+          const slug = m.slug || m.name.toLowerCase().replace(/\s+/g, "-");
+          const payload = {
+            meta_title: content.meta_title,
+            meta_description: content.meta_description,
+            meta_keywords: content.meta_keywords,
+            side_description_html: content.side_description_html,
+            table_content_html: content.table_content_html,
+            description_html: content.description_html,
+            faqs: content.faqs,
+            trust_text: content.trust_text,
+            content_status: "generated",
+            content_generated_at: new Date().toISOString(),
+            generation_error: issues.length ? issues.join("; ") : null,
+          };
+
           const { data: dbData, error: dbErr } = await supabase
             .from("merchants")
-            .update({
-              meta_title: content.meta_title,
-              meta_description: content.meta_description,
-              meta_keywords: content.meta_keywords,
-              side_description_html: content.side_description_html,
-              table_content_html: content.table_content_html,
-              description_html: content.description_html,
-              faqs: content.faqs,
-              trust_text: content.trust_text,
-              content_status: "generated",
-              content_generated_at: new Date().toISOString(),
-              generation_error: issues.length ? issues.join("; ") : null,
-            })
-            .eq("id", m.id)
+            .update(payload)
+            .eq("slug", slug)
             .select("id");
 
           if (dbErr) {
             console.error(
-              `    ✗ DB update failed [${m.id}]: ${dbErr.message} | code: ${dbErr.code}`,
+              `    ✗ DB update failed [slug=${slug}]: ${dbErr.message}`,
             );
             results.push({
+              slug,
               id: m.id,
               name: m.name,
               tier: m.tier,
@@ -1114,35 +1123,25 @@ async function main() {
               generated_at: new Date().toISOString(),
             });
           } else if (!dbData?.length) {
-            // No row matched — insert instead
             console.log(
-              `    ⚠️  No row matched id=${m.id} — attempting insert (auto-generated id)`,
+              `    ⚠️  No row matched slug=${slug} — inserting new row`,
             );
             const { data: insertData, error: insertErr } = await supabase
               .from("merchants")
               .insert({
+                ...payload,
                 name: m.name,
-                slug: m.slug || m.name.toLowerCase().replace(/\s+/g, "-"),
-                meta_title: content.meta_title,
-                meta_description: content.meta_description,
-                meta_keywords: content.meta_keywords,
-                side_description_html: content.side_description_html,
-                table_content_html: content.table_content_html,
-                description_html: content.description_html,
-                faqs: content.faqs,
-                trust_text: content.trust_text,
-                content_status: "generated",
-                content_generated_at: new Date().toISOString(),
-                generation_error: issues.length ? issues.join("; ") : null,
+                slug,
                 web_url: m.web_url || null,
                 is_publish: false,
               })
               .select("id");
             if (insertErr) {
               console.error(
-                `    ✗ Insert also failed [${m.id}]: ${insertErr.message}`,
+                `    ✗ Insert failed [slug=${slug}]: ${insertErr.message}`,
               );
               results.push({
+                slug,
                 id: m.id,
                 name: m.name,
                 tier: m.tier,
@@ -1151,11 +1150,11 @@ async function main() {
               });
             } else {
               const newId = insertData?.[0]?.id;
-              console.log(`    ✓ Inserted new row [new id=${newId}]`);
+              console.log(`    ✓ Inserted [id=${newId} slug=${slug}]`);
               results.push({
+                slug,
                 id: newId,
                 name: m.name,
-                slug: m.slug,
                 tier: m.tier,
                 issues: issues.length ? issues : null,
                 generated_at: new Date().toISOString(),
@@ -1163,11 +1162,12 @@ async function main() {
               });
             }
           } else {
-            console.log(`    ✓ Saved to DB [id=${m.id}]`);
+            const realId = dbData[0]?.id;
+            console.log(`    ✓ Saved to DB [id=${realId} slug=${slug}]`);
             results.push({
-              id: m.id,
+              id: realId,
               name: m.name,
-              slug: m.slug,
+              slug,
               tier: m.tier,
               score: m.score,
               issues: issues.length ? issues : null,
@@ -1194,9 +1194,10 @@ async function main() {
               content_status: "failed",
               generation_error: err.message.substring(0, 500),
             })
-            .eq("id", m.id);
+            .eq("slug", m.slug || m.name.toLowerCase().replace(/\s+/g, "-"));
         } catch (_) {}
         results.push({
+          slug: m.slug || m.name.toLowerCase().replace(/\s+/g, "-"),
           id: m.id,
           name: m.name,
           tier: m.tier,

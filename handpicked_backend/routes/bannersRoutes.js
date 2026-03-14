@@ -1,18 +1,29 @@
-import express from "express";
+import { Router } from "express";
+import multer from "multer";
 import {
-  getAllBanners,
-  getBannerById,
+  listBanners,
+  getBanner,
   createBanner,
   updateBanner,
-  deleteBanner
-} from "../controllers/bannersController.js";
+  toggleActive,
+  deleteBanner,
+} from "../controllers/adminBannersController.js";
 
-const router = express.Router();
+const router = Router();
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
 
-router.get("/", getAllBanners);
-router.get("/:id", getBannerById);
-router.post("/", createBanner);
-router.put("/:id", updateBanner);
+router.get("/", listBanners);
+router.get("/:id", getBanner);
+router.post("/", upload.fields([{ name: "image", maxCount: 1 }]), createBanner);
+router.put(
+  "/:id",
+  upload.fields([{ name: "image", maxCount: 1 }]),
+  updateBanner,
+);
+router.patch("/:id/toggle", toggleActive);
 router.delete("/:id", deleteBanner);
 
 export default router;

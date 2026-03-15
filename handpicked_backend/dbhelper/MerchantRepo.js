@@ -53,7 +53,7 @@ const SELECT_COLS = `
   logo_url, top_banner_url, side_banner_url,
   category_names, brand_categories, coupon_h2_blocks, coupon_h3_blocks,
   faqs, suggestions, views, created_at, updated_at,
-  category_id, subcategory_id
+  category_id, subcategory_id, verifier_id
 `;
 
 export async function list({ name = "", page = 1, limit = 20 } = {}) {

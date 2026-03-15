@@ -32,15 +32,13 @@ export async function listMerchants(req, res) {
     const { rows, total } = await merchantRepo.list({ name, page, limit });
     return res.json({ data: { rows, total }, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error listing merchants",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error listing merchants",
+        details: err?.message || err,
+      },
+    });
   }
 }
 
@@ -50,15 +48,13 @@ export async function getMerchant(req, res) {
     const data = await merchantRepo.getById(id);
     return res.json({ data, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error fetching merchant",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error fetching merchant",
+        details: err?.message || err,
+      },
+    });
   }
 }
 
@@ -105,6 +101,7 @@ export async function createMerchant(req, res) {
       suggestions: parseJSON(b.suggestions, []),
       category_id: toNullableInt(b.category_id),
       subcategory_id: toNullableInt(b.subcategory_id),
+      verifier_id: toNullableInt(b.verifier_id),
     };
 
     if (f.logo?.[0]) {
@@ -117,12 +114,10 @@ export async function createMerchant(req, res) {
         file.mimetype,
       );
       if (error)
-        return res
-          .status(500)
-          .json({
-            data: null,
-            error: { message: "Logo upload failed", details: error },
-          });
+        return res.status(500).json({
+          data: null,
+          error: { message: "Logo upload failed", details: error },
+        });
       toInsert.logo_url = url;
     }
     if (f.top_banner?.[0]) {
@@ -135,12 +130,10 @@ export async function createMerchant(req, res) {
         file.mimetype,
       );
       if (error)
-        return res
-          .status(500)
-          .json({
-            data: null,
-            error: { message: "Top banner upload failed", details: error },
-          });
+        return res.status(500).json({
+          data: null,
+          error: { message: "Top banner upload failed", details: error },
+        });
       toInsert.top_banner_url = url;
     }
     if (f.side_banner?.[0]) {
@@ -153,27 +146,23 @@ export async function createMerchant(req, res) {
         file.mimetype,
       );
       if (error)
-        return res
-          .status(500)
-          .json({
-            data: null,
-            error: { message: "Side banner upload failed", details: error },
-          });
+        return res.status(500).json({
+          data: null,
+          error: { message: "Side banner upload failed", details: error },
+        });
       toInsert.side_banner_url = url;
     }
 
     const created = await merchantRepo.insert(toInsert);
     return res.status(201).json({ data: created, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error creating merchant",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error creating merchant",
+        details: err?.message || err,
+      },
+    });
   }
 }
 
@@ -294,6 +283,8 @@ export async function updateMerchant(req, res) {
         b.subcategory_id !== undefined
           ? toNullableInt(b.subcategory_id)
           : undefined,
+      verifier_id:
+        b.verifier_id !== undefined ? toNullableInt(b.verifier_id) : undefined,
     };
 
     if (b.slug !== undefined) {
@@ -316,12 +307,10 @@ export async function updateMerchant(req, res) {
         file.mimetype,
       );
       if (error)
-        return res
-          .status(500)
-          .json({
-            data: null,
-            error: { message: "Logo upload failed", details: error },
-          });
+        return res.status(500).json({
+          data: null,
+          error: { message: "Logo upload failed", details: error },
+        });
       patch.logo_url = url;
     }
     if (f.top_banner?.[0]) {
@@ -334,12 +323,10 @@ export async function updateMerchant(req, res) {
         file.mimetype,
       );
       if (error)
-        return res
-          .status(500)
-          .json({
-            data: null,
-            error: { message: "Top banner upload failed", details: error },
-          });
+        return res.status(500).json({
+          data: null,
+          error: { message: "Top banner upload failed", details: error },
+        });
       patch.top_banner_url = url;
     }
     if (f.side_banner?.[0]) {
@@ -352,27 +339,23 @@ export async function updateMerchant(req, res) {
         file.mimetype,
       );
       if (error)
-        return res
-          .status(500)
-          .json({
-            data: null,
-            error: { message: "Side banner upload failed", details: error },
-          });
+        return res.status(500).json({
+          data: null,
+          error: { message: "Side banner upload failed", details: error },
+        });
       patch.side_banner_url = url;
     }
 
     const updated = await merchantRepo.update(id, patch);
     return res.json({ data: updated, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error updating merchant",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error updating merchant",
+        details: err?.message || err,
+      },
+    });
   }
 }
 
@@ -382,15 +365,13 @@ export async function updateMerchantStatus(req, res) {
     const updated = await merchantRepo.toggleStatus(id);
     return res.json({ data: updated, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error updating merchant status",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error updating merchant status",
+        details: err?.message || err,
+      },
+    });
   }
 }
 
@@ -420,15 +401,13 @@ export async function deleteMerchant(req, res) {
         .json({ data: null, error: { message: "Failed to delete merchant" } });
     return res.json({ data: { id, deleted_files: urls.length }, error: null });
   } catch (err) {
-    return res
-      .status(500)
-      .json({
-        data: null,
-        error: {
-          message: "Error deleting merchant",
-          details: err?.message || err,
-        },
-      });
+    return res.status(500).json({
+      data: null,
+      error: {
+        message: "Error deleting merchant",
+        details: err?.message || err,
+      },
+    });
   }
 }
 

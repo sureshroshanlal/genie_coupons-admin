@@ -8,6 +8,7 @@ import {
   getAllCategories,
   getSubcategoriesByCategoryId,
 } from "../../services/merchantCategoryService.js";
+import { listAuthors } from "../../services/authorService.js";
 import useEscClose from "../hooks/useEscClose";
 import SafeQuill from "../common/SafeQuill.jsx";
 
@@ -52,11 +53,15 @@ export default function AddMerchantModal({ onClose, onSave }) {
   const [allCategories, setAllCategories] = useState([]);
   const [loadingCats, setLoadingCats] = useState(true);
 
-  // category_id / subcategory_id
   const [categoryId, setCategoryId] = useState("");
   const [subcategoryId, setSubcategoryId] = useState("");
   const [allSubcategories, setAllSubcategories] = useState([]);
   const [loadingSubs, setLoadingSubs] = useState(false);
+
+  // Verifier / Author
+  const [verifierId, setVerifierId] = useState("");
+  const [allAuthors, setAllAuthors] = useState([]);
+  const [loadingAuthors, setLoadingAuthors] = useState(true);
 
   const [brandCategories, setBrandCategories] = useState([]);
   const [couponH2Blocks, setCouponH2Blocks] = useState([]);
@@ -109,6 +114,25 @@ export default function AddMerchantModal({ onClose, onSave }) {
       mounted = false;
     };
   }, [categoryId]);
+
+  // Load authors
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        setLoadingAuthors(true);
+        const { data } = await listAuthors({ limit: 200 });
+        if (mounted) setAllAuthors(Array.isArray(data) ? data : []);
+      } catch {
+        if (mounted) setAllAuthors([]);
+      } finally {
+        if (mounted) setLoadingAuthors(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -244,6 +268,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
     setCategoryId("");
     setSubcategoryId("");
     setAllSubcategories([]);
+    setVerifierId("");
     pickLogo(null);
   };
 
@@ -283,6 +308,7 @@ export default function AddMerchantModal({ onClose, onSave }) {
     fd.append("store_status_visibility", form.store_status_visibility);
     fd.append("category_id", categoryId || "");
     fd.append("subcategory_id", subcategoryId || "");
+    fd.append("verifier_id", verifierId || "");
     if (logo) fd.append("logo", logo);
     fd.append("category_names", JSON.stringify(categories));
     fd.append("brand_categories", JSON.stringify(brandCategories));
@@ -463,8 +489,8 @@ export default function AddMerchantModal({ onClose, onSave }) {
             />
           </div>
 
-          {/* Category ID + Subcategory ID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Category / Subcategory / Verifier */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block mb-1">Category</label>
               <select
@@ -501,6 +527,25 @@ export default function AddMerchantModal({ onClose, onSave }) {
                 {allSubcategories.map((s) => (
                   <option key={s.id} value={s.id}>
                     {s.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block mb-1">Verifier / Author</label>
+              <select
+                value={verifierId}
+                onChange={(e) => setVerifierId(e.target.value)}
+                className="w-full border px-3 py-2 rounded"
+                disabled={loadingAuthors}
+              >
+                <option value="">
+                  {loadingAuthors ? "Loading…" : "Select verifier"}
+                </option>
+                {allAuthors.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.name}
+                    {a.designation ? ` — ${a.designation}` : ""}
                   </option>
                 ))}
               </select>

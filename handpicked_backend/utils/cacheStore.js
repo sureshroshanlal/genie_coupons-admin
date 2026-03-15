@@ -34,5 +34,11 @@ export const memoryCacheStore = (() => {
     store.clear();
   }
 
-  return { get, set, del, flush };
+async function clearByPrefix(prefix) {
+  for (const key of store.keys()) {
+    if (key.includes(prefix)) store.delete(key);
+  }
+}
+
+return { get, set, del, flush, clearByPrefix };
 })();

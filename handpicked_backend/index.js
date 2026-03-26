@@ -14,6 +14,7 @@ import merchantRoutes from "./routes/merchantRoutes.js";
 import merchantCategoryRoutes from "./routes/merchantCategoryRoutes.js";
 import importRoutes from "./routes/importRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import couponReviewsRoutes from "./routes/couponReviewsRoutes.js";
 import { supabase } from "./dbhelper/dbclient.js";
 
 dotenv.config();
@@ -55,6 +56,7 @@ app.use("/api/blog-categories", blogCategoryRoutes);
 app.use("/api/authors", authorRoutes);
 app.use("/api/merchant-categories", merchantCategoryRoutes);
 app.use("/api/imports", importRoutes);
+app.use("/api/coupon-reviews", couponReviewsRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {

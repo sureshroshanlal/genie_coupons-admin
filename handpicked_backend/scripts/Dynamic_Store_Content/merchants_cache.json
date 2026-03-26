@@ -1,1 +1,3781 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "BandwagonHost",
+    "slug": "bandwagonhost",
+    "web_url": "https://www.hostinger.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "template",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 3,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "119.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "CODE ADDED",
+        "COUPON ADDED TO CART",
+        "ADDED TO CART"
+      ],
+      "topTitles": [
+        "BandwagonHost 480GB KVM VPS Server – $119.99 per Month",
+        "Bandwagonhost Ultra VPS Plan $89.99 / Month",
+        "BandwagonHost 320GB KVM VPS Hosting – From $79.99 per Month",
+        "Bandwagonhost E-Commerce SLA VPS $65.89 / 3 Month",
+        "BandwagonHost 40GB KVM VPS Plan – $52.99 Half-Year Deal"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.673Z"
+  },
+  {
+    "id": 2,
+    "name": "FXVM",
+    "slug": "fxvm",
+    "web_url": "https://fxvm.net/",
+    "is_publish": true,
+    "active_coupons_count": 16,
+    "category_names": "",
+    "content_status": "template",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 16,
+      "couponCount": 11,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "29.75",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "FXVMHERE20",
+        "FXVMVPS",
+        "FXVMLIFE"
+      ],
+      "topTitles": [
+        "35% OFF Recurring Virtual Desktop Plans",
+        "Flat 30% OFF On ALL FXVM Plans",
+        "30% OFF FXVM VPS Plans",
+        "30% OFF FXVM Hosting",
+        "30% OFF FXVM Cloud VPS"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 3,
+    "name": "Actproxy",
+    "slug": "actproxy",
+    "web_url": "https://actproxy.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "template",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 10,
+      "dealCount": 2,
+      "verifiedCount": 0,
+      "bestDiscount": "1.4",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "10OFFPROX",
+        "TWIT10",
+        "BHW10"
+      ],
+      "topTitles": [
+        "10% OFF On Actproxy Windows VPS",
+        "10% OFF On All Shared Proxies",
+        "Flat 10% OFF On All Proxies",
+        "10% OFF On All Dedicated & Shared Proxies",
+        "10% OFF On Dedicated Proxies"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 4,
+    "name": "proxynVpn",
+    "slug": "proxynvpn",
+    "web_url": "https://www.proxy-n-vpn.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "template",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 9,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "DISCOUNTPRO",
+        "OMAHA",
+        "15OFF"
+      ],
+      "topTitles": [
+        "20% OFF All Proxy Services (Limited Time)",
+        "Up to 20% OFF Private Proxies – Proxy-N-VPN Deal",
+        "15% OFF SiteWide",
+        "10% OFF On Proxy-N-VPN Plans",
+        "Flat 10% OFF On All VPS Plans"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 5,
+    "name": "Banahosting",
+    "slug": "banahosting",
+    "web_url": "https://banahosting.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "template",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 0,
+      "dealCount": 11,
+      "verifiedCount": 0,
+      "bestDiscount": "432",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Latest BanaHosting Offer : VPS Ultra-11 Plan For $432/1yr",
+        "Bana Corporate Plan $107.46/yr",
+        "Banahosting VPS Ultra-12 Hosting – From $80 per Month",
+        "Bana Starter Plan $53.46/yr",
+        "Banahosting Domain Registration – From $13.95 Per Year"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 8,
+    "name": "Paybis",
+    "slug": "paybis",
+    "web_url": "https://paybis.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 8,
+      "dealCount": 2,
+      "verifiedCount": 0,
+      "bestDiscount": "3",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "STOCKSPROM",
+        "DONTPAYFULL20",
+        "WETHRIFT15"
+      ],
+      "topTitles": [
+        "🔥 20% OFF Paybis (Best Deal)",
+        "💥 20% OFF Paybis Orders",
+        "15% OFF Bitcoin Purchases",
+        "10% OFF Your Next Transaction",
+        "🚀 10% OFF Paybis Transactions"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 9,
+    "name": "Hwxcbd",
+    "slug": "hwxcbd",
+    "web_url": "https://www.hwxcbd.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 6,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "74.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "DONTGO15",
+        "KNODEAL10",
+        "BUDDY10"
+      ],
+      "topTitles": [
+        "CBD Oil & Tinctures Starting at $74.99",
+        "🔥 50% OFF CBD Products – Latest Coupon",
+        "CBD Topicals Starting at $49.99",
+        "CBD Oil for Pets – From $39.99",
+        "25% OFF Delta 8 Vapes (Buy 2–3 Items)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 10,
+    "name": "Booster Theme",
+    "slug": "boostertheme",
+    "web_url": "https://boostertheme.com/",
+    "is_publish": true,
+    "active_coupons_count": 15,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 15,
+      "couponCount": 6,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "4000",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "FDBFS",
+        "SAVE10",
+        "BOOSTER10"
+      ],
+      "topTitles": [
+        "Booster New Store Builder – Special Offer $4000",
+        "Shopify SEO Optimization Service – From $600",
+        "Shopify Store Boost Hours Service – From $500",
+        "Booster Speed Optimization Deal – Save $500 (Now $497)",
+        "Booster Theme Setup Service – From $499"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 11,
+    "name": "Paperlike",
+    "slug": "paperlike",
+    "web_url": "https://paperlike.com/",
+    "is_publish": true,
+    "active_coupons_count": 13,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 13,
+      "couponCount": 3,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "NOMURICEEE",
+        "STUDYWITHNALI",
+        "JANICESTUDIES"
+      ],
+      "topTitles": [
+        "🎁 30% OFF Paperlike Gift Box Set",
+        "🧘 Paperlike 15-Day Mindfulness Method",
+        "🆓 Free Study Guide Download",
+        "Paperlike Cleaning Kit (Refillable) – €24",
+        "Paperlike Drawing Glove – €19"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.707Z"
+  },
+  {
+    "id": 12,
+    "name": "The Allergy Kit",
+    "slug": "theallergykit",
+    "web_url": "https://theallergykit.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "699",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "BS-BFEC5-982-89",
+        "THANKS10"
+      ],
+      "topTitles": [
+        "🧠 The Allergy Kit for Autism – $699",
+        "🌍 The Environmental Allergy Kit – $499",
+        "🌿 The Food Allergy Kit – $499",
+        "🐶 The Allergy Kit® for Dogs with Laser – $399",
+        "🧪 The Allergy Kit® – Starting at $399"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 13,
+    "name": "MainWP",
+    "slug": "mainwp",
+    "web_url": "https://mainwp.com/",
+    "is_publish": true,
+    "active_coupons_count": 13,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 13,
+      "couponCount": 9,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "599",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "12YEARS",
+        "EUP9RMWM0E",
+        "RECURRING"
+      ],
+      "topTitles": [
+        "💎 MainWP Pro Lifetime Plan – $599 One-Time",
+        "🔥 30% OFF MainWP Pro Yearly Plan",
+        "🔥 25% OFF MainWP Pro Yearly Subscription",
+        "🚀 Up to 20% OFF MainWP Plans",
+        "Get Up to 20% OFF (Extensions & Plans)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 19,
+    "name": "Upviral",
+    "slug": "upviral",
+    "web_url": "https://upviral.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 2,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🔥 35% OFF Referral Marketing Platform",
+        "💎 30% OFF Premium Plan (Annual)",
+        "💥 30% OFF Business Plan (Annual)",
+        "🚀 30% OFF Starter Plan (Annual)",
+        ":  🔥 30% OFF UpViral Plans (Limited-Time Deal)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 20,
+    "name": "Cambly",
+    "slug": "cambly",
+    "web_url": "https://www.cambly.com/english?lang=en",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 5,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "HOLLY60OFF",
+        "AMERICASCAMBLY",
+        "SPRING26E"
+      ],
+      "topTitles": [
+        "Cambly Special Offer – 60% Off Online English Subscription",
+        "Cambly Discount Coupon – 50% Off English Courses",
+        "Cambly Small Group Classes – 50% Off English Speaking Practice",
+        "Cambly Private+ Plan Offer – 50% Off One-on-One English Classe",
+        "Cambly Subscription Deal – 49% Off Cambly Pro Plan"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 21,
+    "name": "Outsource School",
+    "slug": "outsourceschool",
+    "web_url": "https://www.outsourceschool.com/",
+    "is_publish": true,
+    "active_coupons_count": 5,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 5,
+      "couponCount": 1,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "997",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🚀 Unlock the Hiring System – $997 (or 3 Payments of $349)",
+        "🎁 Free Hiring Packet + VA Training b",
+        "🆓 Outsource School Free Trial – 14 Days",
+        "✅ 30-Day Money-Back Guarantee",
+        "🔥 Complete VA Hiring System – What You Get"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 22,
+    "name": "myID",
+    "slug": "myid",
+    "web_url": "https://shop.getmyid.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 9,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": "40",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "AR4TL2CE",
+        "8Y6AAR9MPR7Q",
+        "GET10NOW"
+      ],
+      "topTitles": [
+        "Hive Medical ID Bracelet – $34.95 (100% Waterproof)",
+        "🚚 Free US Shipping on Orders Over $40",
+        "💥 20% OFF MyID (Limited-Time Deal)",
+        "🔥 Up to 20% OFF MyID Bracelets",
+        "Up to 15% OFF MyID Products"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 23,
+    "name": "Digital Kickstart",
+    "slug": "digitalkickstart",
+    "web_url": "https://digitalkickstart.com/",
+    "is_publish": true,
+    "active_coupons_count": 7,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 7,
+      "couponCount": 0,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "219",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "PayKickstart Growth Plan – From $219 per Month",
+        "PayKickstart Starter Plan – Full Features from $79",
+        "PayKickstart 3-Year Plan Deal – Save Up to 69%",
+        "PayKickstart Annual Plan Deal – Save 20% on Subscription",
+        "PayKickstart Sales Platform – Sell Digital Products, Subscriptions & Events"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 24,
+    "name": "Walnut Studiolo",
+    "slug": "walnutstudiolo",
+    "web_url": "https://walnutstudiolo.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 5,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "324",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "BIKECRAFT"
+      ],
+      "topTitles": [
+        "🚬 Handroll Tube Smoking Accessories – $324",
+        "🚚 Free Shipping on Orders Over $125",
+        "🏡 Homestead Collection – Starting at $49",
+        "🔥 Up to 25% OFF Large Handles & Wraps",
+        "🚴 20% OFF Bicycle Accessories"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 25,
+    "name": "Bundlehunt",
+    "slug": "bundlehunt",
+    "web_url": "https://bundlehunt.com/",
+    "is_publish": true,
+    "active_coupons_count": 16,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 16,
+      "couponCount": 3,
+      "dealCount": 13,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Total Video Tools for Mac – 95% Off Converter & Editor",
+        "Plus AI Lifetime for Mac – 92% Off Application",
+        "Vibesonic Pro Application Discount – 90% Off Deal",
+        "Coherence X5 Mac App Deal – 88% Off Software",
+        "Lingon Pro Mac Utility – 83% Off Application"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 26,
+    "name": "Balmonds",
+    "slug": "balmonds",
+    "web_url": "https://balmonds.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 1,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "FOPPS20"
+      ],
+      "topTitles": [
+        "Balmonds SPF Collection – 39% Off Sun Protection Skincare",
+        "Balmonds Baby & Children Skincare – 37% Off Gentle Care Products",
+        "Balmonds Skincare Gifts & Bundles – Save 35%",
+        "almonds Sensitive Face Care Set – 34% Off Skincare Deal",
+        "Balmonds Face Care Beauty Products – 34% Off Deal"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 27,
+    "name": "Dr Cowans Garden",
+    "slug": "drcowansgarden",
+    "web_url": "https://www.drcowansgarden.com",
+    "is_publish": true,
+    "active_coupons_count": 14,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 14,
+      "couponCount": 2,
+      "dealCount": 12,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "HEALTH15"
+      ],
+      "topTitles": [
+        "10% Off Vegetable Powders",
+        "2% Off Pasture Products",
+        "Premium Biodynamic Summer Savory Powder – £3000",
+        "Pasture Certified A2 Ghee – £28",
+        "Pasture Meat Boxes from £114"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 28,
+    "name": "X Rocker Gaming",
+    "slug": "xrockergaming",
+    "web_url": "https://xrocker.co.uk/",
+    "is_publish": true,
+    "active_coupons_count": 14,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 14,
+      "couponCount": 3,
+      "dealCount": 11,
+      "verifiedCount": 0,
+      "bestDiscount": "230",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "FAMILYLIFE",
+        "STOMMAGAMES05"
+      ],
+      "topTitles": [
+        "🕹️ Console Gaming Chairs – From $230 (Approx.)",
+        "🌈 RGB LED Gaming Chairs – From $125 (Approx.)",
+        "💺 Floor Rocker Gaming Chairs – From $70 (Approx.)",
+        "💥 Up to 50% OFF Clearance Outlet",
+        "🛏️ 26% OFF Bunk Beds"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 29,
+    "name": "Themeum",
+    "slug": "themeum",
+    "web_url": "https://www.themeum.com/",
+    "is_publish": true,
+    "active_coupons_count": 0,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 0,
+      "couponCount": 0,
+      "dealCount": 0,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "topCodes": [],
+      "topTitles": []
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 30,
+    "name": "Ouino Languages",
+    "slug": "ouinolanguages",
+    "web_url": "https://www.ouinolanguages.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 4,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "6.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🔥 70% OFF OUINO French Complete Course",
+        "🔥 70% OFF OUINO Spanish Complete Course",
+        "70% OFF OUINO Italian Complete Course",
+        "💥 70% OFF OUINO German Complete",
+        "70% OFF OUINO Portuguese Complete"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 31,
+    "name": "Treehouse Supplies",
+    "slug": "treehousesupplies",
+    "web_url": "https://www.treehousesupplies.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 2,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "804",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🔧 Treehouse Hardware Kits – From $804",
+        "🌳 🚚 Free Shipping on Orders Over $650",
+        "🌉 Rope Bridge Kits – Starting at $516",
+        "🏗️ Treehouse Plans – Starting at $92",
+        "🏡 Heritage Square Treehouse Plans – $92"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 32,
+    "name": "The Elderberry Co",
+    "slug": "theelderberryco",
+    "web_url": "https://theelderberryco.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 6,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": "25.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "LUCKY",
+        "WWJESS",
+        "GUMMIES15"
+      ],
+      "topTitles": [
+        "🛍️ Buy 1 Get 1 50% OFF",
+        "🧪 Elderberry Syrup Kit – $25.95",
+        "🔥 25% OFF Your Order",
+        "🍇 25% OFF The Elderberry Co Storewide",
+        "🎯 19% OFF The Elderberry Co Products"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 33,
+    "name": "Top Shelf Golf",
+    "slug": "topshelfgolf",
+    "web_url": "https://topshelfgolf.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "100",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "WELCOME5",
+        "4VH2Q326FBF0",
+        "FALL5"
+      ],
+      "topTitles": [
+        "🎯 $100 OFF Golf Simulator Orders",
+        "💥 Save $62.45 on Your Order",
+        "🔥 34% OFF Garmin Approach R10 Launch Monitor",
+        "📊 11% OFF Garmin Approach R50 Launch Monitor",
+        "⛳ 10% OFF Golf Simulator Packages"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 34,
+    "name": "My Online Fashion Store",
+    "slug": "myonlinefashionstore",
+    "web_url": "https://www.myonlinefashionstore.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 1,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "💼 Build Your Fashion Store – Only $99",
+        "🎯 10% OFF Your First Order",
+        "BigCommerce Integration – $9/Month with Free Trial",
+        "Wix Integration – $9/Month with Free Trial",
+        "Standard Program – Only $9/Month"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.708Z"
+  },
+  {
+    "id": 35,
+    "name": "Kodiak wholesale",
+    "slug": "kodiakwholesale",
+    "web_url": "https://www.kodiak-wholesale.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 3,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "708",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "🧴 5% OFF CUSTOM WATER BOTTLES",
+        "FIRST10",
+        "FIRST25"
+      ],
+      "topTitles": [
+        "🚚 Free Shipping on Orders Over $708",
+        "🔥 Up to 57% OFF Kodiak Wholesale Custom Products",
+        "💥 50% OFF Bulk Custom Tumblers & Mugs",
+        "👕 25% OFF Custom Logo Apparel & Business Clothing",
+        "🎯 25% OFF Orders Over $250"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 36,
+    "name": "Barn2",
+    "slug": "barn2",
+    "web_url": "https://barn2.com/",
+    "is_publish": true,
+    "active_coupons_count": 13,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 13,
+      "couponCount": 0,
+      "dealCount": 13,
+      "verifiedCount": 1,
+      "bestDiscount": "149",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Barn2 All Plugins Plan for 20 Sites – Save Up to 88%",
+        "Barn2 Product Options + Live Preview Bundle – $149 Plugin Package",
+        "Barn2 One Plugin Plan – Premium WordPress Plugin for $99",
+        "Barn2 Plugin Plan for 5 Sites – Save Up to 85%",
+        "Barn2 VIP Plan Deal – Save Up to 76% on All Plugins"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 37,
+    "name": "Luvv",
+    "slug": "luvv",
+    "web_url": "https://luvv.co/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 6,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "JUCART103KFGPFS",
+        "ALEXIS57342",
+        "LUVV20"
+      ],
+      "topTitles": [
+        "Up to 30% OFF Luvv Pods",
+        "🚀 30% OFF Luvv Orders",
+        "🔥 25% OFF Luvv Orders (Limited Time)",
+        "20% OFF Complete Set (12 Pack)",
+        "20% OFF Luvv Orders"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 38,
+    "name": "Bluchic",
+    "slug": "bluchic",
+    "web_url": "https://www.bluchic.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 5,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "169",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "GIFTBC",
+        "WELCOMEBC"
+      ],
+      "topTitles": [
+        "Bluchic Sales Funnel Templates – From $169",
+        "Bluchic WordPress Theme – From $169 Website Template",
+        "Bluchic Add-On Website Templates – From $149",
+        "Bluchic Website Installation Service – Save $50",
+        "Bluchic Canva Launch Templates Kit – From $47"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 39,
+    "name": "Nick’s Sticks",
+    "slug": "nickssticks",
+    "web_url": "https://nicks-sticks.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 10,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": "100",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "SAVE25",
+        "NS10",
+        "NICKS10"
+      ],
+      "topTitles": [
+        "🚚 Free Shipping on Orders Over $100",
+        "💥 25% OFF Storewide at Nick’s Sticks",
+        "20% OFF Nick’s Sticks Orders",
+        "Save Up to 20% OFF Cart Value",
+        "🔥 20% OFF Nick’s Sticks Snack Sticks"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 40,
+    "name": "SQSP Themes",
+    "slug": "sqspthemes",
+    "web_url": "https://www.sqspthemes.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 2,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "129",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "MAR20WF"
+      ],
+      "topTitles": [
+        "📈 SEO-Optimized Squarespace Templates from $129",
+        "⚡ Minimalist Squarespace Templates – From $99",
+        "💻 Squarespace Website Templates Starting at $97",
+        "🔥 Limited-Time Offer – Up to 40% OFF Selected Themes",
+        "💡 Bundle Deal – Save Up to 35% on Theme Packs"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 41,
+    "name": "Primal Health Coach",
+    "slug": "primalhealthcoach",
+    "web_url": "https://www.primalhealthcoach.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 2,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "10",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "💥 Save 14% on Primal Health Coach Courses",
+        "💎 All-Access Pass – $10,995",
+        "Master Coach Certification – $6,490",
+        "Primal Fitness Coach Certification – $4,495",
+        "Primal Health Coach Certification Course – $4,495"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 42,
+    "name": "MailerLite",
+    "slug": "mailerlite",
+    "web_url": "https://www.mailerlite.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 4,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "500",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Save $500+ with MailerLite Advanced Plan Marketplace",
+        "35% OFF Termly Premium Plan",
+        "30% OFF Partnero Affiliate Marketing Tool",
+        "20% OFF Skyvia Data Integration Platform",
+        "15% OFF Google Workspace Business Plan"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 43,
+    "name": "Personality Hacker",
+    "slug": "personalityhacker",
+    "web_url": "https://www.personalityhacker.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 3,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "197",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "INSIDER15"
+      ],
+      "topTitles": [
+        "Intuitive Awakening Course – $197",
+        "Tools for Emotional Survival – $127",
+        "ISFP Owner’s Manual Course – $67",
+        "Personality Types & Dysregulation Masterclass – $47",
+        "💥 30% OFF Self-Regulation Workshop"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 44,
+    "name": "Monstrum Tactical",
+    "slug": "monstrumtactical",
+    "web_url": "https://monstrumtactical.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 4,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "100",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "FFC525",
+        "GL24LASERBEAK25",
+        "AMMOLAND25"
+      ],
+      "topTitles": [
+        "🚚 Free Shipping on Orders Over $100",
+        "🔥 40% OFF Shotgun Shell Holder",
+        "💥 25% OFF Monstrum Laserbeak M-LOK Laser Sight",
+        "25% OFF Selected Monstrum Tactical Products",
+        "Save Up to 20% on Cart Value"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 46,
+    "name": "Bionic Gym",
+    "slug": "bionicgym",
+    "web_url": "https://bionicgym.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "124",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "QUIZ77",
+        "ADBRP",
+        "ARMAND10"
+      ],
+      "topTitles": [
+        "BionicGym Replacement Wraps – From $124 Accessory",
+        "BionicGym PRO + HIIT Training System – $100 Off",
+        "BionicGym Coupon Code – $100 Off Device",
+        "BionicGym Gel Pads Replacement Set – From $22",
+        "BionicGym Charger Accessory – 20% Off Deal"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 47,
+    "name": "KSResin",
+    "slug": "ksresin",
+    "web_url": "https://www.ksresin.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 7,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": "205.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "GENIE50",
+        "SAVE15",
+        "LOVE10"
+      ],
+      "topTitles": [
+        "Liquid Stone Granite™ Countertop Kit – $205.95",
+        "Clear Casting Epoxy Resin – Starting at $60",
+        "Fast Set Epoxy Resin – From $30",
+        "15% OFF KSResin Products",
+        "15% OFF Coating Epoxy Resin"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 48,
+    "name": "Link Whisper",
+    "slug": "linkwhisper",
+    "web_url": "https://linkwhisper.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "40",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "SPECIALOFFER",
+        "BLOGGERSPASSION",
+        "VIPSALE"
+      ],
+      "topTitles": [
+        "🔥 90% OFF Agency Plan – Only $1/Site/Month",
+        "🚀 69% OFF Pro Plan – $2/Site/Month",
+        "💰 $40 OFF Your Cart Value (Limited Time)",
+        "32% OFF Growth Plan – $5/Site/Month",
+        "🔥 Get $25 OFF Link Whisper (Sitewide)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 49,
+    "name": "TradingView",
+    "slug": "tradingview",
+    "web_url": "https://www.tradingview.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "WELCOMEOFFER2026"
+      ],
+      "topTitles": [
+        "🔥 70% OFF TradingView Premium Plan (Best Deal)",
+        "💥 40% OFF TradingView Essential Plan",
+        "🚀 40% OFF TradingView Plus Plan",
+        "🎉 20% OFF for New TradingView Users",
+        "🚫 Ad-Free Trading Experience"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 50,
+    "name": "Dataquest",
+    "slug": "dataquest",
+    "web_url": "https://www.dataquest.io/",
+    "is_publish": true,
+    "active_coupons_count": 6,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 6,
+      "couponCount": 0,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "49",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Dataquest Premium Monthly Plan – $49 per Month Subscription",
+        "Dataquest Premium Annual Plan – Save 32% on Subscription",
+        "Dataquest Interactive Learning – Projects and Practice Included",
+        "Dataquest Risk-Free Learning – 14-Day Money-Back Guarantee",
+        "Dataquest Learning Platform – Access All Data Science Courses"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 51,
+    "name": "Positive Parenting Solutions",
+    "slug": "positiveparentingsolutions",
+    "web_url": "https://www.positiveparentingsolutions.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 0,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "399",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🔥 Positive Parenting Solutions Course – One-Time $399 (Lifetime Access)",
+        "✅ 30-Day 100% Happiness Guarantee",
+        "💳 Flexible Payment Plan – $39.99/Month",
+        "🧠 Expert-Led Parenting Training",
+        "📚 Step-by-Step Parenting System"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 52,
+    "name": "TimTam",
+    "slug": "timtam",
+    "web_url": "https://www.timandtam.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 6,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "72",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "TTWEL10",
+        "NEW10",
+        "TTWEL5"
+      ],
+      "topTitles": [
+        "🛏️ Mane Satin Nursing Pillow Cover – $72",
+        "🔥 18% OFF Tim & Tam Orders (Best Deal)",
+        "💆 Smooth Hair Essentials – Starting at $16",
+        "💤 Mane Standard Pillowcase – $16",
+        "🌟 Up to 15% OFF Satin Hair Care Products"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 53,
+    "name": "Madaz Money",
+    "slug": "madazmoney",
+    "web_url": "https://madazmoney.com",
+    "is_publish": true,
+    "active_coupons_count": 7,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 7,
+      "couponCount": 3,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "2990",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "LUCKY26L",
+        "LUCKY26Y",
+        "LUCKY26M"
+      ],
+      "topTitles": [
+        "Miah Lee “Core” Trading Psychology Course – $2990",
+        "💎 40% OFF Lifetime Plan (Best Deal)",
+        "🚀 35% OFF Madaz Money Yearly Plan",
+        "🔥 25% OFF Madaz Money Monthly Plan",
+        "Limited Seats – Open Enrollment Courses"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 54,
+    "name": "Nushape",
+    "slug": "nushape",
+    "web_url": "https://nushape.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "549.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "NUSHAPE",
+        "SAVE50",
+        "NIBOT10"
+      ],
+      "topTitles": [
+        "NuShape Light Therapy Wrap – $549.99",
+        "Alchemy H2 Hydrogen Water Bottle – $298",
+        "NuShape Portable Energy Pack – $89.99",
+        "💥 $50 OFF NuShape Orders",
+        "💰 $25 OFF NuShape Orders"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 55,
+    "name": "Travelling Mail Box",
+    "slug": "travellingmailbox",
+    "web_url": "https://travelingmailbox.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 1,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "55",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "UPREV"
+      ],
+      "topTitles": [
+        "🏢 Small Business Plan – $55/Month",
+        "Travelling Mail Box 📦 Extended Plan – $25/Month",
+        "📬 Basic Plan – Starting at $15/Month",
+        "US 10% Military Discount",
+        "🔥 10% OFF Traveling Mailbox Plans"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 56,
+    "name": "Dutch Passion",
+    "slug": "dutchpassion",
+    "web_url": "https://dutch-passion.com/en/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 1,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "50% OFF High THC Trial Pack",
+        "50% OFF Dutch Outdoor Cannabis Strains",
+        "Up to 50% OFF Dutch Passion Cannabis Seeds",
+        "Up to 15% OFF Fast Flowering Cannabis Seeds",
+        "10% OFF CBD-Rich Cannabis Seeds"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 57,
+    "name": "Trading Computers",
+    "slug": "tradingcomputers",
+    "web_url": "https://tradingcomputers.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 10,
+      "dealCount": 0,
+      "verifiedCount": 0,
+      "bestDiscount": "100",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "TRADEINTHESNOW",
+        "ULTIMATETRADER",
+        "CHRISTMAS2025"
+      ],
+      "topTitles": [
+        "$100 Off Falcon F-25 Trading Laptop Coupon Code",
+        "$100 Off Trading Computers Desktop Setup",
+        "$100 Off Trading Computers Spring Sale Coupon Code",
+        "10% Off Desktop Trading Computer Bundles",
+        "10% Off Falcon P-32 Trading Desktop Coupon Code"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 58,
+    "name": "purebulk",
+    "slug": "purebulk",
+    "web_url": "https://purebulk.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 9,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "PRELOVEDDISCOUN",
+        "ADORIANDECK",
+        "WELCOME10"
+      ],
+      "topTitles": [
+        "Up to 70% OFF PureBulk (Limited-Time Deal)",
+        "20% OFF Protein Powder",
+        "Save Up to 20% OFF Cart Value",
+        "16% OFF Vitamin Supplements",
+        "16% OFF PureBulk Orders"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 59,
+    "name": "Clear Estimates",
+    "slug": "clearestimates",
+    "web_url": "https://www.clearestimates.com/",
+    "is_publish": true,
+    "active_coupons_count": 4,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 4,
+      "couponCount": 1,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Clear Estimates Pro Plan Promotion – Save 40% on Subscription",
+        "Clear Estimates Pro Plan Deal – Up to 30% Off Subscription",
+        "Clear Estimates Standard Plan Coupon – 20% Off Subscription"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 60,
+    "name": "Hyke & Byke",
+    "slug": "hykeandbyke",
+    "web_url": "https://hykeandbyke.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 4,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "10",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "SUMMER20",
+        "VIP-15",
+        "OUTDOOR20"
+      ],
+      "topTitles": [
+        "20% OFF Hammock-Compatible Down Sleeping Bags",
+        "20% OFF Your Order – Limited Time",
+        "🔥 20% OFF Sitewide at Hyke & Byke",
+        "15% OFF Hyke & Byke Orders (Spend & Save)",
+        "10% OFF Advanced Synthetic Sleeping Bags"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 61,
+    "name": "Humbled Trader",
+    "slug": "humbledtrader",
+    "web_url": "https://www.humbledtrader.com/",
+    "is_publish": true,
+    "active_coupons_count": 4,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 4,
+      "couponCount": 0,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "1290",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Humbled Trader Community Membership – $1290/Year",
+        "🔥 3 Months FREE ZeroPro & ZeroWeb (Save $177)",
+        "10% OFF Short Locate Fees (Limited Time)",
+        "1-on-1 Mentorship Accelerator Program"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.709Z"
+  },
+  {
+    "id": 62,
+    "name": "Socialpilot",
+    "slug": "socialpilot",
+    "web_url": "https://www.socialpilot.co/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 6,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "LUKE10",
+        "WELCOME15NEW",
+        "THANKS30"
+      ],
+      "topTitles": [
+        "💥 Up to 50% OFF Annual Subscriptions",
+        "🔥 40% OFF SocialPilot Annual Plans",
+        "🚀 30% OFF SocialPilot Annual Plans",
+        "🚀 15% OFF SocialPilot Premium Plan",
+        "📊 15% OFF SocialPilot Standard Plan"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 63,
+    "name": "Wati.io",
+    "slug": "watiio",
+    "web_url": "https://wati.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 0,
+      "dealCount": 11,
+      "verifiedCount": 0,
+      "bestDiscount": "222",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "💎 Wati Business Plan – From $222/Month",
+        "💥 Wati Pro Plan – From $78/Month",
+        "🚀 Wati Growth Plan – Starting at $32/Month",
+        "🔥 Send 500 WhatsApp Messages for Just $12 (No Subscription)",
+        "⭐ Trusted Platform with 4.6/5 Rating"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 70,
+    "name": "Seobuddy",
+    "slug": "seobuddy",
+    "web_url": "https://seobuddy.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 6,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "49",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "WATIVSEO",
+        "AFFSAS15",
+        "SEOLOVE"
+      ],
+      "topTitles": [
+        "📈 The Link Chest – From $49/Month",
+        "🔥 40% OFF SEO Checklist Bundle",
+        "🔥 35% OFF SEO Buddy Plans (Best Deal)",
+        "🚀 30% OFF SOP Collection – Only $97",
+        "🚀 Save Up to 18% OFF SEO Buddy"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 71,
+    "name": "Gryphonconnect",
+    "slug": "gryphonconnect",
+    "web_url": "https://gryphonconnect.com",
+    "is_publish": true,
+    "active_coupons_count": 8,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 8,
+      "couponCount": 0,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "299",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Gryphon AX WiFi 6 Router – Now $299",
+        "40% OFF Re-Certified Gryphon Guardian (1-Pack)",
+        "Gryphon AX 2-Pack – Now $499 (Up to 40% More Performance)",
+        "Gryphon Premium Protection – Only $7.50/Month",
+        "Gryphon Premium Plan – Total Protection Features"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 72,
+    "name": "HealthVape",
+    "slug": "healthvape",
+    "web_url": "https://www.healthvape.com",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 3,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "SAVEGC20",
+        "NEWME26",
+        "BFCM"
+      ],
+      "topTitles": [
+        "20% OFF HealthVape Pods",
+        "🔥 15% OFF HealthVape Orders – Latest Working Coupon",
+        "EXTRA 15% OFF Overstock Specials",
+        "Up to 15% OFF Melatonin HealthVapes",
+        "10% OFF Caffeine HealthVapes"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 73,
+    "name": "3Dsellers",
+    "slug": "3dsellers",
+    "web_url": "https://www.3dsellers.com",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 2,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "9",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "WELCOMEBACK"
+      ],
+      "topTitles": [
+        "💡 20% OFF Essential Plan (Save $36/Year)",
+        "🚀 20% OFF Professional Plan (Save $240/Year)",
+        "💥 20% OFF Growth Plan (Save $120/Year)",
+        "🔥 20% OFF 3Dsellers Plans (Best Deal)",
+        "🤖 AI Bulk Actions – From $9/Month"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 74,
+    "name": "Firewalla",
+    "slug": "firewalla",
+    "web_url": "https://firewalla.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 4,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "599",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "FIRELAUNCH",
+        "APPUSER8",
+        "STAYCYBERSAFE"
+      ],
+      "topTitles": [
+        "Firewalla Gold Plus for $599",
+        "Firewalla Purple SE for $269",
+        "Firewalla Wi-Fi SD for $59",
+        "20% OFF Firewalla Purple SE",
+        "15% OFF Firewalla Access Point 7"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 75,
+    "name": "TrendSpider",
+    "slug": "trendspider",
+    "web_url": "https://trendspider.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "399",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "10TS",
+        "DSP25",
+        "LIB40"
+      ],
+      "topTitles": [
+        "🏢 Enterprise Business Plan – From $399/Month",
+        "⚡ Standard Plan – From $52.38/Month",
+        "🔥 40% OFF TrendSpider Standard Plan (Best Deal)",
+        "🚀 32% OFF Enterprise Plan (Advanced Traders)",
+        "📊 Up to 32% OFF Enhanced Plan"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 76,
+    "name": "Safepal",
+    "slug": "safepal",
+    "web_url": "https://store.safepal.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 3,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "89.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "5ZEX2O0GPFNA",
+        "13246500@SFP",
+        "CHAINLEAK@SFP"
+      ],
+      "topTitles": [
+        "SafePal S1 Pro – $89.99",
+        "SafePal X1 Hardware Wallet – $69.99",
+        "SafePal S1 Hardware Wallet – $49.99",
+        "🔥 $40 OFF SafePal X1 Hardware Wallet (Members Only)",
+        "Save Up to 10% OFF SafePal Wallets"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 77,
+    "name": "Ulanzi",
+    "slug": "ulanzi",
+    "web_url": "https://www.ulanzi.com/",
+    "is_publish": true,
+    "active_coupons_count": 13,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 13,
+      "couponCount": 8,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "79",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "BRUMA12",
+        "SHARE",
+        "TRAVEL"
+      ],
+      "topTitles": [
+        "🚚 Free Shipping on Orders Over $79",
+        "💥 20% OFF Ulanzi Products",
+        "🎥 20% OFF Ulanzi Orders",
+        "🔥 20% OFF Ulanzi Storewide (Best Deal)",
+        "🚀 Up to 15% OFF Ulanzi Deals"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 78,
+    "name": "Omegaquant",
+    "slug": "omegaquant",
+    "web_url": "https://omegaquant.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 5,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "54.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "DILWORTH",
+        "OMEGABV",
+        "OQYOUTUBE10"
+      ],
+      "topTitles": [
+        "Omega-3 Index for Pets – $54.95",
+        "Mother’s Milk DHA Test – $54.95",
+        "Prenatal DHA At-Home Test – $54.95",
+        "Omega-3 Index Test – $54.95",
+        "Save Up to 15% OFF Your Order"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 79,
+    "name": "Caltonnutrition",
+    "slug": "caltonnutrition",
+    "web_url": "https://caltonnutrition.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 3,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "29.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "CALTON NUTRITION OMEGA-3 COUPON – $5 OFF ORIGIN OMEGA 3",
+        "MIRACLEVITAMIN",
+        "RYB27"
+      ],
+      "topTitles": [
+        "Calton Nutrition Primal Probiotics – From $29.95",
+        "Calton Nutrition Coupon Code – $27 Off Selected Products",
+        "Calton Nutrition Vitamin D3 Supplement – 25% Off",
+        "Calton Nutrition Vitamin K2 MK-7 – 24% Off Supplement",
+        "Calton Nutrition Multivitamin Deal – 21% Off Nutrience Formula"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 80,
+    "name": "Temple Sportswear",
+    "slug": "templesportswear",
+    "web_url": "https://tmplsportswear.com/",
+    "is_publish": true,
+    "active_coupons_count": 0,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 0,
+      "couponCount": 0,
+      "dealCount": 0,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "topCodes": [],
+      "topTitles": []
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 81,
+    "name": "Voomly",
+    "slug": "voomly",
+    "web_url": "https://www.voomly.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 0,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "79",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🚀 Voomly Pro Plan – $79/Month",
+        "☁️ Voomly Cloud Plan – $49/Month",
+        "⚡ Voomly Plus Plan – $19/Month",
+        "💎 16% OFF Voomly Pro Plan ($790/Year)",
+        "🚀 16% OFF Voomly Cloud Plan ($490/Year)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 82,
+    "name": "Battery Hookup",
+    "slug": "batteryhookup",
+    "web_url": "https://batteryhookup.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 11,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": "2000",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "MYHOE",
+        "POWERWALLS",
+        "BMW"
+      ],
+      "topTitles": [
+        "BatteryHookup Free Shipping Deal – Orders Over $2000",
+        "BatteryHookup Maximum Savings Deal – Up to 15% Off",
+        "BatteryHookup Special Coupon – 15% Off Storewide Deal",
+        "BatteryHookup Order Deal – 10% Off Battery Packs",
+        "BatteryHookup Power Solutions Offer – Up to 10% Off"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 83,
+    "name": "Modelones",
+    "slug": "modelones",
+    "web_url": "https://modelones.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 4,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "45",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "NEWMO20",
+        "HM20",
+        "MONAIL20"
+      ],
+      "topTitles": [
+        "🚚 Free Shipping on Orders Over $45",
+        "🎁 Unlock 40% OFF Your First Order",
+        "Save Up to 25% OFF Modelones",
+        "🔥 25% OFF Modelones Storewide",
+        "20% OFF Modelones Products"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 84,
+    "name": "Lion Energy",
+    "slug": "lionenergy",
+    "web_url": "https://lionenergy.com",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 5,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "129",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "10ENERGYGENIE",
+        "10W",
+        "HAPPILYEVERTHANKS"
+      ],
+      "topTitles": [
+        "Lion Eclipse Mag Power Bank – $129",
+        "33% OFF Summit Solar Kit",
+        "31% OFF Lithium Batteries",
+        "Power Banks Starting at $25",
+        "Up to 22% OFF Full Power Suite"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 85,
+    "name": "Titan Casket",
+    "slug": "titancasket",
+    "web_url": "https://titancasket.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 7,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": "100",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "KWE",
+        "SMS-545",
+        "BFCM100"
+      ],
+      "topTitles": [
+        "$100 OFF Military Caskets",
+        "💥 $100 OFF Latest Titan Casket Deal",
+        "💰 $100 OFF Titan Casket Orders",
+        "🎯 Save Up to $80 OFF Your Order",
+        "🌿 Eco Urns – Starting at $59"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 86,
+    "name": "BlogFixer",
+    "slug": "blogfixer",
+    "web_url": "https://www.blogfixer.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 0,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "395",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "BlogFixer Blog Monetization Setup Service – $395",
+        "BlogFixer Amazon Broken Image Repair Service – $200",
+        "BlogFixer Mixed Content Error Fix Service – $125",
+        "BlogFixer Nofollow SEO Service – From $115",
+        "BlogFixer Dead Affiliate Link Fix Service – $95"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 87,
+    "name": "Most Used Words",
+    "slug": "mostusedwords",
+    "web_url": "https://mostusedwords.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 1,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "29.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🔥 30% OFF Complete Italian Frequency Dictionaries Collection",
+        "French Frequency Dictionary Books – Starting at $29.99",
+        "Greek Frequency Dictionary Books – From $29.99",
+        "German Frequency Dictionary Books – Starting at $29.99",
+        "Italian Frequency Dictionary Books – From $29.99"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 88,
+    "name": "WeBoost",
+    "slug": "weboost",
+    "web_url": "https://www.weboost.com/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 6,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "749.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "WEBOOSTMIRC",
+        "FAST5",
+        "WELCOMESUB"
+      ],
+      "topTitles": [
+        "🏗️ weBoost Work Site – $749.99",
+        "🏡 weBoost Cabin – $699.99",
+        "🚐 Drive Reach RV II – $549.99",
+        "🚛 Drive Reach OTR – $519.99",
+        "🚚 Free Shipping on Orders Over $75"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 89,
+    "name": "Nui Organics",
+    "slug": "nuiorganics",
+    "web_url": "https://nuiorganics.com/",
+    "is_publish": true,
+    "active_coupons_count": 0,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 0,
+      "couponCount": 0,
+      "dealCount": 0,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "topCodes": [],
+      "topTitles": []
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 90,
+    "name": "Sixthreezero",
+    "slug": "sixthreezero",
+    "web_url": "https://www.sixthreezero.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 3,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "1000",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "EMIL5",
+        "DEALSPOTR5",
+        "SIMPLYCODES5"
+      ],
+      "topTitles": [
+        "💥 Save $1000 OFF Fat Tire 750W Reverse E-Trike",
+        "⚡ $300 OFF Men’s Electric Bicycles",
+        "🚴‍♂️ Up to 50% OFF Bikes, E-Bikes & E-Trikes",
+        "👩 20% OFF Women’s Electric Bicycles",
+        "🚀 Up to 15% OFF Front Wheel E-Trikes"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 91,
+    "name": "Brooklyn Candle Studio",
+    "slug": "brooklyncandlestudio",
+    "web_url": "https://brooklyncandlestudio.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 3,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "48",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "THANKYOU20",
+        "THANKYOU10"
+      ],
+      "topTitles": [
+        "Brooklyn Candle Studio Reed Diffusers – From $48",
+        "Brooklyn Candle Studio Candle Sale – Up to 40% Off Limited Edition Candles",
+        "Brooklyn Candle Studio Christmas Tree Jar Candle – 29% Off Deal",
+        "Brooklyn Candle Studio Discovery Set – 28% Off Travel Candles",
+        "Brooklyn Candle Studio Pura Smart Diffusers – From $20"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 92,
+    "name": "Sensacalm",
+    "slug": "sensacalm",
+    "web_url": "https://www.sensacalm.co",
+    "is_publish": true,
+    "active_coupons_count": 0,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 0,
+      "couponCount": 0,
+      "dealCount": 0,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "topCodes": [],
+      "topTitles": []
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 93,
+    "name": "Boucleme",
+    "slug": "bouclme",
+    "web_url": "https://www.boucleme.co.uk/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 7,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": "80",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "MYDAILYWELLNESS15",
+        "CHARLOTTEK15",
+        "GEL-NOFRIZZ"
+      ],
+      "topTitles": [
+        "Bouclème Free Shipping Deal – Orders Over $80",
+        "Bouclème Free Gel Offer – Free Seal + Shield Gel on Orders Over $65",
+        "Boucleme Fragrance-Free Curl Cream – Starting from $28",
+        "Bouclème Super Hold Styler Deal – 25% Off 250ml",
+        "Bouclème Hair Care Promo Code – 15% Off Order"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 94,
+    "name": "Shop ABS2B",
+    "slug": "shopabs2b",
+    "web_url": "https://shopabs2b.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 3,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "SPRING"
+      ],
+      "topTitles": [
+        "🎉 30% OFF First Order (New Customers)",
+        "🔥 25% OFF Spring Sale – Today Only",
+        "🔥 20% OFF Shapewear",
+        "👚 20% OFF Women’s Tops",
+        "🏃 15% OFF Joggers"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 95,
+    "name": "Somavedic",
+    "slug": "somavedic",
+    "web_url": "https://somavedic.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 3,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "650",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "SOMA10%OFF",
+        "BIGORDER"
+      ],
+      "topTitles": [
+        "Somavedic Traveller – $650",
+        "🚚 Free Shipping on Orders Over $500",
+        "Somavedic Crystal Pyramid – $129",
+        "Somavedic Bracelet – $65",
+        "🔥 14% OFF Somavedic Orders (Min. $2000)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 96,
+    "name": "Elite Supps",
+    "slug": "elitesupps",
+    "web_url": "https://www.elitesupps.com.au/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 0,
+      "dealCount": 12,
+      "verifiedCount": 0,
+      "bestDiscount": "60",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Elite Supps Pre-Workout Supplements – Up to 72% Off Deal",
+        "Elite Supps Protein Water – Up to 71% Off",
+        "Elite Supps Free EHP Labs Bundle – Free $60 Gift When You Spend $99",
+        "Elite Supps Hormone Support Vitamins – 51% Off Sale",
+        "Elite Supps Protein Bars – 50% Off Snack Deals"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 97,
+    "name": "Sugar and Vapor",
+    "slug": "sugarandvapor",
+    "web_url": "https://sugarandvapor.com/",
+    "is_publish": true,
+    "active_coupons_count": 9,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 9,
+      "couponCount": 4,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "89",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "NEWBABE",
+        "SAVE10",
+        "EARTHDAY12"
+      ],
+      "topTitles": [
+        "🚚 Free Shipping on Orders Over $89",
+        "💥 15% OFF VIP Deal",
+        ".  🌍 12% OFF Earth Day Special",
+        "🖤 Sweetwood Tales Collection – Starting at $10.95",
+        "🌫️ 10% OFF Gloomy Coquette Collection"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 98,
+    "name": "Ekster",
+    "slug": "ekster",
+    "web_url": "https://ekster.com",
+    "is_publish": true,
+    "active_coupons_count": 13,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 13,
+      "couponCount": 1,
+      "dealCount": 12,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "SAVE10"
+      ],
+      "topTitles": [
+        "Ekster Trackable TravelPack™ Bundle – Up to 48% Off",
+        "Ekster Smart Vacuum Kit – Up to 45% Off Travel Organizer",
+        "Ekster Smart Wallet Sale – Up to 45% Off Deal",
+        "Ekster Spring Sale – Up to 45% Off Smart Wallets & Accessories",
+        "Ekster TravelPack™ Vacuum Kit – 36% Off Deal"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 99,
+    "name": "AvalonKing",
+    "slug": "avalonking",
+    "web_url": "https://avalonking.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 7,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": "90",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "COUPON CODE: LONESTAR25",
+        "DOUG25",
+        "JDM25"
+      ],
+      "topTitles": [
+        "Free Shipping on AvalonKing Orders Over $90",
+        "Armor Shield IX DIY Ceramic Coating Kit for $69.99",
+        "Armor Shield Lite Fast Ceramic Spray for $34.99",
+        "$30 Off AvalonKing Orders Coupon Code",
+        "$25 Off AvalonKing Purchase Coupon Code"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 100,
+    "name": "Brainstorm Force",
+    "slug": "brainstormforce",
+    "web_url": "https://brainstormforce.com/",
+    "is_publish": true,
+    "active_coupons_count": 0,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 0,
+      "couponCount": 0,
+      "dealCount": 0,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "topCodes": [],
+      "topTitles": []
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 101,
+    "name": "BuyBotPro",
+    "slug": "buybotpro",
+    "web_url": "https://www.buybotpro.com/",
+    "is_publish": true,
+    "active_coupons_count": 8,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 8,
+      "couponCount": 0,
+      "dealCount": 8,
+      "verifiedCount": 1,
+      "bestDiscount": "129.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "BuyBotPro Free Course – 7-Day Online Arbitrage Training",
+        "BuyBotPro Enterprise Plan – Advanced Arbitrage Tools from $129.95/mo",
+        "BuyBotPro Professional Plan – Amazon Seller Software from $54.95/mo",
+        "BuyBotPro AI Software Stack – Save 46% on Arbitrage Tools",
+        "BuyBotPro Advanced Plan – Desktop & Mobile Arbitrage Software from $39.95/mo"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 102,
+    "name": "Arena Strength",
+    "slug": "arenastrength",
+    "web_url": "https://arenastrength.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 10,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "WELCOME10",
+        "STOCKOUT20"
+      ],
+      "topTitles": [
+        "50% Off Arena Strength Yearly App Membership",
+        "20% Off Arena Strength Sale Prices Coupon Code",
+        "20% Off Arena Strength Booty Tone Equipment",
+        "20% Off Arena Strength Door Anchor",
+        "Up to 15% Off Arena Strength Body Bar"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 103,
+    "name": "Stakich",
+    "slug": "stakich",
+    "web_url": "http://www.stakich.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 3,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "79",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "STAK5",
+        "STAK10"
+      ],
+      "topTitles": [
+        "🌿 American Ginseng – Starting at $79",
+        "🚚 Free Shipping on Orders Over $75",
+        "🛡️ Propolis – Starting at $39",
+        "🌼 Bee Pollen – Starting at $21.95",
+        "🔥 10% OFF Selected Stakich Products"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 104,
+    "name": "Pure Thera",
+    "slug": "purethera",
+    "web_url": "https://purethera.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "75",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "TRIBE10EMAIL",
+        "RANDREWARD10",
+        "PRIORITY10"
+      ],
+      "topTitles": [
+        "Free Shipping on Orders Over $75 (US Only)",
+        "15% OFF PureThera Supplements – Best Deal Today",
+        "Save Up to 10% OFF PureThera Orders",
+        "10% OFF Detox Capsules",
+        "Extra 10% OFF Your Next Order"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 105,
+    "name": "Apple Valley Natural Soap",
+    "slug": "applevalleynaturalsoap",
+    "web_url": "https://www.applevalleynaturalsoap.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "75",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Free Shipping on Orders Over $75",
+        "Save Up to 20% on Apple Valley Natural Soap Liquid Seasonal Soaps",
+        "Flat 20% Off Apple Valley Natural Soap Spring & Summer Limited Editions",
+        "20% Off Seasonal Soaps at Apple Valley Natural Soap",
+        "20% Off Apple Valley Natural Soap Fall Soap Collection"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 106,
+    "name": "Harkla",
+    "slug": "harkla",
+    "web_url": "https://harkla.co/",
+    "is_publish": true,
+    "active_coupons_count": 12,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 12,
+      "couponCount": 6,
+      "dealCount": 6,
+      "verifiedCount": 0,
+      "bestDiscount": "139",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "COOPER",
+        "SENSORY10",
+        "THRIFTY-NIFTY-MOMMY"
+      ],
+      "topTitles": [
+        "Early Intervention Blueprint – $139",
+        "20% OFF Harkla Digital Courses",
+        "15% OFF Harkla Sensory Products",
+        "Up to 15% OFF Harkla Products & Courses",
+        "Up to 10% OFF Harkla Subscriptions"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 107,
+    "name": "Sellerlabs",
+    "slug": "sellerlabs",
+    "web_url": "https://Sellerlabs.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 1,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "250",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "🚀 Get 10 Amazon Reviews in 30 Days – FREE Trial ($250 Value)",
+        "💎 Save Up to 40% with Genius Bundle Plan",
+        "📊 20% OFF Profit Genius Plan (Save $95.98)",
+        "💰 20% OFF Ad Genius Plan (Save $71.98)",
+        "🔥 20% OFF Feedback Genius Plan (Save $47.98)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 108,
+    "name": "Charliebanana",
+    "slug": "charliebanana",
+    "web_url": "https://charliebanana.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 2,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "50",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "WELCOMECB2026NEW"
+      ],
+      "topTitles": [
+        "Charlie Banana Free Shipping Deal – Orders Over $50",
+        "Charlie Banana Swim Diaper Snaps – 40% Off Deal",
+        "Charlie Banana Product Sale – Up to 40% Off Selected Items",
+        "Charlie Banana Teen Period Underwear – 20% Off Avarina Collection",
+        "Charlie Banana Training Pants – 20% Off Toddler Essentials"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 109,
+    "name": "Infinity Collection",
+    "slug": "infinitycollection",
+    "web_url": "https://infinitycollection.org",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 7,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "INFINITYC10",
+        "JAMES",
+        "INFINITY15"
+      ],
+      "topTitles": [
+        "Free Shipping on Orders Over $39.99 + 100% Money-Back Guarantee",
+        "15% OFF Earrings",
+        "15% OFF Sitewide Infinity Collection",
+        "10% OFF Jewelry at Infinity Collection",
+        "10% OFF Your Favorite Jewelry"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 110,
+    "name": "8000kicks",
+    "slug": "8000kicks",
+    "web_url": "https://www.8000kicks.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 9,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": "200",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "TOPYANEZ",
+        "800UTT",
+        "KC10"
+      ],
+      "topTitles": [
+        "💰 $200 OFF Storewide",
+        "🔥 50% OFF 8000Kicks Storewide (Best Deal)",
+        "💥 40% OFF 8000Kicks Orders",
+        "🚀 35% OFF 8000Kicks Products",
+        "👟 $30 OFF Hemp Shoes"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 111,
+    "name": "Fifinemicrophone",
+    "slug": "fifinemicrophone",
+    "web_url": "https://fifinemicrophone.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 0,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "128.99",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "FIFINE D6 Stream Controller – $128.99",
+        "FIFINE AmpliGame SC8 Gaming Audio Mixer with RGB – $79.99",
+        "FIFINE AmpliGame H13 USB Headset with RGB – $54.99",
+        "Up to 20% OFF FIFINE Streaming & Gaming Standard Bundle",
+        "20% OFF FIFINE Streaming & Gaming Ultimate Bundle Kit"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 112,
+    "name": "Givingthanks",
+    "slug": "givingthanks",
+    "web_url": "https://www.givingthanks.co/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 0,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "666",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Quantum Soul 12-Month Personal Development Program – AUD $666",
+        "Wholesale 120 Astro Cards – AUD $250",
+        "2023 Live Workshop Presentation Series – AUD $165",
+        "50% OFF 2026 Gratitude Diaries",
+        "Free Shipping on Orders Over $50 (Australia Only)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 113,
+    "name": "Buythermopro",
+    "slug": "buythermopro",
+    "web_url": "https://buythermopro.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 2,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "THERMOPRO20",
+        "PRELUV"
+      ],
+      "topTitles": [
+        "ThermoPro TP970 TempSpike Plus – 70% Off Wireless Meat Thermometer",
+        "ThermoPro TP620 Instant-Read Meat Thermometer – 60% Off Deal",
+        "ThermoPro Value Pack – 55% Off Twin TempSpike TP962 & TP620",
+        "ThermoPro TempSpike XR TP862 – 38% Off Wireless BBQ Thermometer",
+        "ThermoPro TempSpike Pro TP980 – 30% Off Smart Meat Thermometer"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 114,
+    "name": "Doogee",
+    "slug": "doogee",
+    "web_url": "https://www.doogee.com/",
+    "is_publish": true,
+    "active_coupons_count": 8,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 8,
+      "couponCount": 1,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "180",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "NEW"
+      ],
+      "topTitles": [
+        "DOOGEE Mega Sale – Save Up to $180 on Selected Products",
+        "DOOGEE BoneBeat Swim Ray Headphones – From $99.99",
+        "DOOGEE Smart Wearables Discount – Save $30 on Selected Devices",
+        "DOOGEE Anywise W1 Pro Smartwatch – 30% Off Waterproof Sports Watch",
+        "DOOGEE S Series Smartphones – 15% Off Rugged Phones"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 115,
+    "name": "Samplize",
+    "slug": "samplize",
+    "web_url": "https://samplize.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 4,
+      "dealCount": 7,
+      "verifiedCount": 0,
+      "bestDiscount": "6.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "ATOLLS10",
+        "SZPRO",
+        "DRAPER15"
+      ],
+      "topTitles": [
+        "Save Over 20% with Samplize Bundles",
+        "🎯 15% OFF Selected Samplize Products",
+        "10% OFF Your First Order",
+        "Benjamin Moore Bedroom Colors – From $6.95",
+        "Top 10 Best-Selling Green Paint Colors – From $6.95"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 116,
+    "name": "Dogwise",
+    "slug": "dogwise",
+    "web_url": "https://www.dogwise.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 0,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "50",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Dogwise Free Shipping Deal – Orders Over $50 in the USA",
+        "Dogwise Jason’s Bargain Basement – Up to 15% Off Deals",
+        "Dogwise Trainer Book Deals – 15% Off Top Dog Training Titles",
+        "Dogwise DVD, CD & Audiobook Sale – 12% Off Training Media",
+        "Dogwise Health & Nutrition Books – 10% Off Veterinary Guides"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 117,
+    "name": "Microjig",
+    "slug": "microjig",
+    "web_url": "https://microjig.com/",
+    "is_publish": true,
+    "active_coupons_count": 11,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 11,
+      "couponCount": 3,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "375",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "WELCOME10"
+      ],
+      "topTitles": [
+        "GRR-RIPPER® Air Ultra – $375",
+        "MICRODIAL Tapering Jig – $126.99",
+        "CNC Workholding Kit – $119.99",
+        "🚚 Free Shipping on Orders Over $49",
+        "Miter Bar Set – $42.99"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 118,
+    "name": "Tribest",
+    "slug": "tribest",
+    "web_url": "https://tribest.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 8,
+      "dealCount": 2,
+      "verifiedCount": 0,
+      "bestDiscount": "849.95",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "DJ",
+        "CRAIGLANE",
+        "STOCKUP26"
+      ],
+      "topTitles": [
+        "🥤 Twin Gear Juicers – Starting at $849.95",
+        "🚚 Free Shipping on Orders Over $150",
+        "💥 40% OFF Glass Storage Containers",
+        "⚡ 20% OFF Vertical Juicers",
+        "🚀 20% OFF Tribest Orders"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 119,
+    "name": "Involveme",
+    "slug": "involveme",
+    "web_url": "https://www.involve.me/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 1,
+      "dealCount": 9,
+      "verifiedCount": 0,
+      "bestDiscount": "399",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "involve.me Enterprise Plan – From $399/month",
+        "involve.me Business Plan – $199/month",
+        "involve.me Pro Plan – $99/month",
+        "Save Up to 40% on involve.me Annual Plans",
+        "involve.me Starter Plan – From $29/month"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 120,
+    "name": "Succulents Box",
+    "slug": "succulentsbox",
+    "web_url": "https://succulentsbox.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 9,
+      "dealCount": 1,
+      "verifiedCount": 0,
+      "bestDiscount": "10",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "REVIEW17",
+        "BACK25",
+        "20CACTUS"
+      ],
+      "topTitles": [
+        "🏡 Flat 25% OFF Houseplants",
+        "🌵 25% OFF Succulents Box Storewide",
+        "🌵 20% OFF Selected Succulents & Cactus",
+        "🔥 20% OFF Succulents Box Orders",
+        "🛠️ 17% OFF Tools & Pots"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 121,
+    "name": "Lively Root",
+    "slug": "livelyroot",
+    "web_url": "https://livelyroot.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 5,
+      "dealCount": 5,
+      "verifiedCount": 0,
+      "bestDiscount": "83",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "10PLANTS",
+        "WNBS954BL2V",
+        "HOLIDAY15"
+      ],
+      "topTitles": [
+        "Smart Watering Plants Starting at $83",
+        "Air Purifying Plants Starting at $43",
+        "Pet-Safe Plants Starting at $43",
+        "20% OFF Orders Over $100",
+        "16% OFF Snake Plants (Sansevieria)"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 122,
+    "name": "BUBS Naturals",
+    "slug": "bubsnaturals",
+    "web_url": "https://www.bubsnaturals.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "failed",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 2,
+      "dealCount": 8,
+      "verifiedCount": 0,
+      "bestDiscount": "106",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [
+        "BUBS NATURALS SUPPLEMENT PROMO – 20% OFF SELECTED PRODUCTS",
+        "HYDRATE20"
+      ],
+      "topTitles": [
+        "BUBS Naturals Welcome Kit Deal – Free $106 Kit with Collagen Subscription",
+        "BUBS Naturals Collagen Peptides Supplement – 25% Off Offer",
+        "BUBS Naturals Creatine Monohydrate – Up to 20% Off",
+        "BUBS Naturals Supplement Promo – 20% Off Selected Products",
+        "BUBS Naturals Discount Code – 20% Off Select Items"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 123,
+    "name": "Oldbonesco",
+    "slug": "oldbonesco",
+    "web_url": "https://www.oldbonesco.com",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 7,
+      "dealCount": 3,
+      "verifiedCount": 0,
+      "bestDiscount": null,
+      "bestDiscountType": null,
+      "discountRange": null,
+      "topCodes": [
+        "FF20",
+        "EXTRA5",
+        "VIP25"
+      ],
+      "topTitles": [
+        "💡 25% OFF Lighting (Min. $200)",
+        "25% OFF Office Furniture",
+        "💥 25% OFF OldBonesCo Storewide",
+        "🔥 20% OFF Sitewide + Free Shipping (Min. $200)",
+        "10% OFF Bath Vanities"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 125,
+    "name": "Loan Signing System",
+    "slug": "loansigningsystem",
+    "web_url": "https://www.loansigningsystem.com/",
+    "is_publish": true,
+    "active_coupons_count": 10,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 10,
+      "couponCount": 0,
+      "dealCount": 10,
+      "verifiedCount": 0,
+      "bestDiscount": "797",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "Learn at Your Own Pace – $797 Value Included",
+        "Exclusive List of 300+ Hiring Companies – $600 Value",
+        "Insider Secrets Vault – $497 Value",
+        "Proven 9-Step Blueprint – $497 Value",
+        "🔥 Loan Signing System™ Course – Only $347"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  },
+  {
+    "id": 126,
+    "name": "AirDNA",
+    "slug": "airdna",
+    "web_url": "https://www.airdna.co/",
+    "is_publish": true,
+    "active_coupons_count": 5,
+    "category_names": "",
+    "content_status": "generated",
+    "scrape_score": null,
+    "content_tier": null,
+    "scraped_data": null,
+    "scrape_attempted_at": null,
+    "offerSummary": {
+      "totalActive": 5,
+      "couponCount": 1,
+      "dealCount": 4,
+      "verifiedCount": 0,
+      "bestDiscount": "79",
+      "bestDiscountType": "flat",
+      "discountRange": null,
+      "topCodes": [],
+      "topTitles": [
+        "AirDNA Research Plan Discount – From $79/Month After Savings",
+        "AirDNA Annual Plan Deal – Save Up to 73%",
+        "AirDNA Host Plan Deal – From $34/Month (Billed $399 Annually)",
+        "Unlock Market Insights with AirDNA Analytics Tools",
+        "AirDNA Free Plan – $0 Forever"
+      ]
+    },
+    "fetched_at": "2026-03-25T08:18:38.710Z"
+  }
+]

@@ -135,7 +135,7 @@ function buildOfferSummary(coupons) {
     totalActive: coupons.length,
     couponCount: couponRows.length,
     dealCount: dealRows.length,
-    verifiedCount: verified.length,
+    verifiedCount: coupons.length,
     bestDiscount,
     bestDiscountType,
     discountRange: pctValues.length >= 2 ? { min: minPct, max: maxPct } : null,

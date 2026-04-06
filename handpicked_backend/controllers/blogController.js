@@ -14,6 +14,7 @@ const toError = (err, msg = "Server error") => ({
   error: { message: msg, details: err?.message || err },
 });
 const toBool = (v) => v === true || v === "true" || v === 1 || v === "1";
+const toNumOrNull = (v) => (v === null || v === undefined || v === "") ? null : Number(v);
 
 export async function listBlogs(req, res) {
   try {

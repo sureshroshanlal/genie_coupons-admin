@@ -1581,7 +1581,7 @@ export default function VariationEngine() {
   const [apiKey, setApiKey] = useState(""); // used for single mode
   const [apiKeys, setApiKeys] = useState([""]); // used for batch mode round-robin
   const [backendUrl, setBackendUrl] = useState(BACKEND_URL);
-  const [model, setModel] = useState("gemini-3.1-flash-lite");
+  const [model, setModel] = useState("gemini-3.1-flash-lite-preview");
   const [useDB, setUseDB] = useState(true);
   const [keyUsage, setKeyUsage] = useState({}); // { keyIndex: callCount }
   const keyIdxRef = useRef(0); // current round-robin pointer
@@ -2214,9 +2214,6 @@ export default function VariationEngine() {
                 style={{ ...inputStyle, height: 36 }}
                 disabled={running}
               >
-                <option value="gemini-3.1-flash-lite">
-                  gemini-3.1-flash-lite
-                </option>
                 <option value="gemini-3.1-flash-lite-preview">
                   gemini-3.1-flash-lite-preview (500 RPD)
                 </option>
@@ -2351,9 +2348,6 @@ export default function VariationEngine() {
                 style={{ ...inputStyle, height: 36 }}
                 disabled={running}
               >
-                <option value="gemini-3.1-flash-lite">
-                  gemini-3.1-flash-lite
-                </option>
                 <option value="gemini-3.1-flash-lite-preview">
                   gemini-3.1-flash-lite-preview (500 RPD/key)
                 </option>

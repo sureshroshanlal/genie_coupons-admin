@@ -16,6 +16,7 @@ import CouponsListPage from "./CouponsListPage.jsx";
 import CouponsValidationPage from "./CouponsValidationPage.jsx";
 import BannersListPage from "./BannersListPage.jsx";
 import CouponReviewsListPage from "./CouponReviewsListPage.jsx";
+import ContentGenerator from "./ContentGenerator.jsx";
 
 export default function AppRouter() {
   const [isClient, setIsClient] = useState(false);
@@ -64,6 +65,7 @@ export default function AppRouter() {
             element={<CouponsValidationPage />}
           />
           <Route path="coupons/reviews" element={<CouponReviewsListPage />} />
+          <Route path="tools/seo" element={<ContentGenerator />} />
           {/* More child screens here */}
         </Route>
 

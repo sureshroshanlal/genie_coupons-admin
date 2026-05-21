@@ -262,17 +262,17 @@ router.post("/scrape-coupons", async (req, res) => {
   if (mErr || !merchant) return res.status(404).json({ error: "Merchant not found" });
   if (!merchant.web_url) return res.status(400).json({ error: "Merchant has no web_url" });
 
-  // 1. Fetch merchant
-  const { data: merchant, error: mErr } = await supabase
-    .from("merchants")
-    .select("id, name, web_url")
-    .eq("id", merchantId)
-    .single();
+  // // 1. Fetch merchant
+  // const { data: merchant, error: mErr } = await supabase
+  //   .from("merchants")
+  //   .select("id, name, web_url")
+  //   .eq("id", merchantId)
+  //   .single();
 
-  if (mErr || !merchant)
-    return res.status(404).json({ error: "Merchant not found" });
-  if (!merchant.web_url)
-    return res.status(400).json({ error: "Merchant has no web_url" });
+  // if (mErr || !merchant)
+  //   return res.status(404).json({ error: "Merchant not found" });
+  // if (!merchant.web_url)
+  //   return res.status(400).json({ error: "Merchant has no web_url" });
 
   // 2. Scrape homepage
   let pageText = "";

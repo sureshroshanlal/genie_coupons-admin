@@ -1576,6 +1576,25 @@ function SaveStatus({ status }) {
   return <StatusBadge {...s} />;
 }
 
+function ScrapeStatus({ status, result }) {
+  if (status === "idle") return null;
+  const map = {
+    loading: { bg: "#E6F1FB", color: "#185FA5", text: "⟳ Scraping offers…" },
+    done: {
+      bg: "#EAF3DE",
+      color: "#2E5C0E",
+      text: `✓ ${result?.inserted ?? 0} inserted, ${result?.skipped ?? 0} skipped`,
+    },
+    failed: {
+      bg: "#FAECE7",
+      color: "#993C1D",
+      text: `✗ ${result?.error || "Scrape failed"}`,
+    },
+  };
+  const s = map[status];
+  return <StatusBadge bg={s.bg} color={s.color} text={s.text} />;
+}
+
 // ─── MAIN COMPONENT ───────────────────────────────────────────────
 export default function VariationEngine() {
   const [apiKey, setApiKey] = useState(""); // used for single mode
@@ -1609,6 +1628,9 @@ export default function VariationEngine() {
   const [batchTotal, setBatchTotal] = useState(0);
   const stopRef = useRef(false);
 
+  const [scrapeStatus, setScrapeStatus] = useState("idle"); // idle | loading | done | failed
+  const [scrapeResult, setScrapeResult] = useState(null);
+
   const showPreview = () => {
     if (!merchant || !category) {
       setError("Enter merchant name and category first.");
@@ -1634,6 +1656,35 @@ export default function VariationEngine() {
       })
       .filter((r) => r.name);
 
+  const scrapeCoupons = async () => {
+    if (!merchantSlug) {
+      setError("DB Slug is required to scrape offers.");
+      return;
+    }
+    if (!apiKey) {
+      setError("Gemini API key is required.");
+      return;
+    }
+    setError("");
+    setScrapeStatus("loading");
+    setScrapeResult(null);
+
+    try {
+      const res = await fetch(`${backendUrl}/api/seo/scrape-coupons`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: merchantSlug, geminiKey: apiKey, model }),
+        signal: AbortSignal.timeout(60000),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `Failed ${res.status}`);
+      setScrapeResult(data);
+      setScrapeStatus("done");
+    } catch (err) {
+      setScrapeResult({ error: err.message });
+      setScrapeStatus("failed");
+    }
+  };
   // ── Single generate + save ──
   const runSingle = async () => {
     if (!apiKey || !merchant || !category) {
@@ -1792,6 +1843,19 @@ export default function VariationEngine() {
   const processStore = async (r, keyEntry) => {
     let dbData = null;
     let crawledText = "";
+    // Step 1 — Scrape (pass slug directly, no extra merchant-data call)
+    if (r.slug) {
+      try {
+        await fetch(`${backendUrl}/api/seo/scrape-coupons`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ slug: r.slug, geminiKey: keyEntry.k, model }),
+          signal: AbortSignal.timeout(60000),
+        });
+      } catch (e) {
+        console.warn(`Scrape failed for ${r.name}:`, e.message);
+      }
+    }
 
     if (useDB && r.slug) dbData = await fetchMerchantData(r.slug, backendUrl);
 
@@ -2614,6 +2678,41 @@ export default function VariationEngine() {
             </div>
           )}
 
+          {/* Scrape Offers */}
+          <div style={{ marginBottom: "0.75rem" }}>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <button
+                onClick={scrapeCoupons}
+                disabled={running || scrapeStatus === "loading"}
+                style={{
+                  padding: "9px 14px",
+                  fontSize: 13,
+                  border: "0.5px solid var(--color-border-primary)",
+                  borderRadius: 8,
+                  background: "var(--color-background-primary)",
+                  cursor:
+                    scrapeStatus === "loading" ? "not-allowed" : "pointer",
+                  fontFamily: "inherit",
+                }}
+              >
+                {scrapeStatus === "loading"
+                  ? "⏳ Scraping…"
+                  : "🔍 Scrape Offers"}
+              </button>
+              <ScrapeStatus status={scrapeStatus} result={scrapeResult} />
+            </div>
+            {scrapeStatus === "done" && scrapeResult?.message && (
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "var(--color-text-secondary)",
+                  marginTop: 5,
+                }}
+              >
+                {scrapeResult.message}
+              </div>
+            )}
+          </div>
           <div style={{ display: "flex", gap: 8, marginBottom: "1rem" }}>
             <button
               onClick={showPreview}

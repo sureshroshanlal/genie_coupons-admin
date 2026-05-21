@@ -264,7 +264,6 @@ router.post("/scrape-coupons", async (req, res) => {
   const { data: merchant, error: mErr } = await (
     merchantId ? query.eq("id", merchantId) : query.eq("slug", slug)
   ).single();
-  merchantId = merchant.id;
 
   if (mErr || !merchant)
     return res.status(404).json({ error: "Merchant not found" });
@@ -377,7 +376,7 @@ ${pageText}`;
   const { data: existing } = await supabase
     .from("coupons")
     .select("title")
-    .eq("merchant_id", merchantId);
+    .eq("merchant_id", merchant.id);
 
   const existingTitles = new Set(
     (existing || []).map((c) => c.title.toLowerCase().trim()),
@@ -390,7 +389,7 @@ ${pageText}`;
         c.title?.trim() && !existingTitles.has(c.title.toLowerCase().trim()),
     )
     .map((c) => ({
-      merchant_id: merchantId,
+      merchant_id: merchant.id,
       title: c.title.trim().substring(0, 120),
       description: c.description || null,
       coupon_code: c.coupon_code || null,

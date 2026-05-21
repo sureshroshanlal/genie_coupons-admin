@@ -249,8 +249,14 @@ router.get("/pending-merchants", async (req, res) => {
 // ─── POST /api/seo/scrape-coupons ────────────────────────────────
 // Scrapes merchant homepage, parses coupons via Gemini, inserts new ones
 router.post("/scrape-coupons", async (req, res) => {
-  const { merchantId, slug, geminiKey, model = "gemini-2.5-flash-lite" } = req.body;
-  if (!merchantId && !slug) return res.status(400).json({ error: "merchantId or slug required" });
+  const {
+    merchantId,
+    slug,
+    geminiKey,
+    model = "gemini-2.5-flash-lite",
+  } = req.body;
+  if (!merchantId && !slug)
+    return res.status(400).json({ error: "merchantId or slug required" });
   if (!geminiKey) return res.status(400).json({ error: "geminiKey required" });
 
   // Resolve merchant — accept either merchantId or slug
@@ -258,9 +264,12 @@ router.post("/scrape-coupons", async (req, res) => {
   const { data: merchant, error: mErr } = await (
     merchantId ? query.eq("id", merchantId) : query.eq("slug", slug)
   ).single();
+  merchantId = merchant.id;
 
-  if (mErr || !merchant) return res.status(404).json({ error: "Merchant not found" });
-  if (!merchant.web_url) return res.status(400).json({ error: "Merchant has no web_url" });
+  if (mErr || !merchant)
+    return res.status(404).json({ error: "Merchant not found" });
+  if (!merchant.web_url)
+    return res.status(400).json({ error: "Merchant has no web_url" });
 
   // // 1. Fetch merchant
   // const { data: merchant, error: mErr } = await supabase

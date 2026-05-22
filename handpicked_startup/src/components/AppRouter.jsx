@@ -17,6 +17,7 @@ import CouponsValidationPage from "./CouponsValidationPage.jsx";
 import BannersListPage from "./BannersListPage.jsx";
 import CouponReviewsListPage from "./CouponReviewsListPage.jsx";
 import ContentGenerator from "./ContentGenerator.jsx";
+import CouponScraper from "./CouponScraper.jsx";
 
 export default function AppRouter() {
   const [isClient, setIsClient] = useState(false);
@@ -66,6 +67,7 @@ export default function AppRouter() {
           />
           <Route path="coupons/reviews" element={<CouponReviewsListPage />} />
           <Route path="tools/seo" element={<ContentGenerator />} />
+          <Route path="tools/scraper" element={<CouponScraper />} />
           {/* More child screens here */}
         </Route>
 

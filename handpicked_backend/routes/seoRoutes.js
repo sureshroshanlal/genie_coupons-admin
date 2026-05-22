@@ -3,6 +3,8 @@
  * GET  /api/seo/merchant-data?slug=   — pull merchant + coupon stats
  * PATCH /api/seo/merchant-content      — save generated content to merchants table
  * GET  /api/seo/crawl?url=            — server-side crawl proxy (fixes CORS)
+ * GET  /api/seo/pending-merchants     — merchants with no generated content
+ * POST /api/seo/scrape-coupons        — scrape homepage, parse via Gemini, insert new coupons
  */
 
 import express from "express";
@@ -35,11 +37,7 @@ router.get("/merchant-data", async (req, res) => {
       .eq("id", merchant.category_id)
       .single();
 
-    // 3. Coupons — correct column names from actual schema
-    // active = is_publish true
-    // coupon_type: 'coupon' | 'deal'
-    // discount_type: 'percent' | 'flat' | 'none'
-    // code column: coupon_code (not code)
+    // 3. Coupons
     const { data: coupons, error: cErr } = await supabase
       .from("coupons")
       .select(
@@ -85,7 +83,6 @@ router.get("/merchant-data", async (req, res) => {
       ["new", "first"].some((kw) => (c.title || "").toLowerCase().includes(kw)),
     );
 
-    // 5. Response — field names the frontend expects
     return res.json({
       merchantId: merchant.id,
       name: merchant.name,
@@ -95,19 +92,19 @@ router.get("/merchant-data", async (req, res) => {
         .length,
       totalDeals: activeCoupons.filter((c) => c.coupon_type === "deal").length,
       contentGenerated: merchant.content_generated,
-      maxDiscount, // highest % off
-      avgDiscount, // avg % off
+      maxDiscount,
+      avgDiscount,
       maxFlatDiscount: maxFlat,
-      couponTypes, // ['percent','flat','none']
-      hasFreeShipping: false, // no free_shipping type in this schema — flag kept for prompt compat
+      couponTypes,
+      hasFreeShipping: false,
       hasNewUserOffer,
       coupons: activeCoupons.slice(0, 10).map((c) => ({
         title: c.title,
-        code: c.coupon_code, // correct column name
+        code: c.coupon_code,
         discountType: c.discount_type,
         value: c.discount_value ? Number(c.discount_value) : null,
         currency: c.currency,
-        type: c.coupon_type, // 'coupon' | 'deal'
+        type: c.coupon_type,
       })),
       lastUpdated: new Date().toISOString().split("T")[0],
     });
@@ -136,7 +133,7 @@ router.patch("/merchant-content", async (req, res) => {
     return res.status(400).json({ error: "content object required" });
 
   const payload = {};
-  payload.content_generated = true; // mark as generated when content is saved
+  payload.content_generated = true;
   for (const [key, value] of Object.entries(content)) {
     if (ALLOWED_CONTENT_FIELDS.has(key)) payload[key] = value;
   }
@@ -169,7 +166,6 @@ router.patch("/merchant-content", async (req, res) => {
 });
 
 // ─── GET /api/seo/crawl ───────────────────────────────────────────
-// Server-side proxy — fixes CORS block on frontend direct fetch
 router.get("/crawl", async (req, res) => {
   const { url } = req.query;
   if (!url) return res.status(400).json({ error: "url required" });
@@ -201,8 +197,6 @@ router.get("/crawl", async (req, res) => {
 });
 
 // ─── GET /api/seo/pending-merchants ──────────────────────────────
-// Returns merchants with no generated content (description_html null/empty)
-// Frontend "Load Pending" button uses this to auto-fill batch textarea
 router.get("/pending-merchants", async (req, res) => {
   const limit = Math.min(parseInt(req.query.limit) || 500, 500);
 
@@ -217,7 +211,6 @@ router.get("/pending-merchants", async (req, res) => {
 
     if (error) throw error;
 
-    // Batch fetch category names
     const categoryIds = [
       ...new Set((data || []).map((m) => m.category_id).filter(Boolean)),
     ];
@@ -247,7 +240,7 @@ router.get("/pending-merchants", async (req, res) => {
 });
 
 // ─── POST /api/seo/scrape-coupons ────────────────────────────────
-// Scrapes merchant homepage, parses coupons via Gemini, inserts new ones
+// Accepts slug OR merchantId — no double resolution call needed from frontend
 router.post("/scrape-coupons", async (req, res) => {
   const {
     merchantId,
@@ -259,28 +252,23 @@ router.post("/scrape-coupons", async (req, res) => {
     return res.status(400).json({ error: "merchantId or slug required" });
   if (!geminiKey) return res.status(400).json({ error: "geminiKey required" });
 
-  // Resolve merchant — accept either merchantId or slug
-  const query = supabase.from("merchants").select("id, name, web_url");
-  const { data: merchant, error: mErr } = await (
-    merchantId ? query.eq("id", merchantId) : query.eq("slug", slug)
-  ).single();
+  // 1. Resolve merchant by slug or id
+  const { data: merchant, error: mErr } = await (slug
+    ? supabase
+        .from("merchants")
+        .select("id, name, web_url")
+        .eq("slug", slug)
+        .single()
+    : supabase
+        .from("merchants")
+        .select("id, name, web_url")
+        .eq("id", merchantId)
+        .single());
 
   if (mErr || !merchant)
     return res.status(404).json({ error: "Merchant not found" });
   if (!merchant.web_url)
     return res.status(400).json({ error: "Merchant has no web_url" });
-
-  // // 1. Fetch merchant
-  // const { data: merchant, error: mErr } = await supabase
-  //   .from("merchants")
-  //   .select("id, name, web_url")
-  //   .eq("id", merchantId)
-  //   .single();
-
-  // if (mErr || !merchant)
-  //   return res.status(404).json({ error: "Merchant not found" });
-  // if (!merchant.web_url)
-  //   return res.status(400).json({ error: "Merchant has no web_url" });
 
   // 2. Scrape homepage
   let pageText = "";
@@ -372,7 +360,7 @@ ${pageText}`;
       message: "No offers found on page",
     });
 
-  // 4. Fetch existing titles for dedup
+  // 4. Dedup by title against existing coupons for this merchant
   const { data: existing } = await supabase
     .from("coupons")
     .select("title")
@@ -382,7 +370,7 @@ ${pageText}`;
     (existing || []).map((c) => c.title.toLowerCase().trim()),
   );
 
-  // 5. Filter + build insert payload
+  // 5. Build insert payload
   const toInsert = parsed
     .filter(
       (c) =>

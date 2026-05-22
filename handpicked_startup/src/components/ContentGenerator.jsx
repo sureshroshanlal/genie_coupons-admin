@@ -1,10 +1,7 @@
 /**
- * Genie Coupon — Content Architecture Variation Engine v2.3
- * Changes from v2.2:
- * - Multi-key round-robin for batch — up to 10 Gemini keys, one key per store
- * - Key rotation UI in config panel
- * - Per-key usage counter displayed live during batch
- * - On 429, auto-rotates to next available key and retries once
+ * Genie Coupon — Content Architecture Variation Engine v2.4
+ * Scraping is handled by the dedicated CouponScraper tool (tools/scraper)
+ * Content gen reads from DB — run scraper first to populate coupons before generating content
  */
 
 import { useState, useRef } from "react";
@@ -55,7 +52,7 @@ function safeJSON(text) {
   return JSON.parse(clean.replace(/,(\s*[}\]])/g, "$1"));
 }
 
-// ─── DISCOUNT SUMMARY (built from scratch) ────────────────────────
+// ─── DISCOUNT SUMMARY ─────────────────────────────────────────────
 function formatDiscount(c) {
   if (!c) return null;
   if (c.discountType === "percent" && c.value) return `${c.value}% off`;
@@ -79,7 +76,6 @@ function buildDiscountSummary(dbData) {
     name,
   } = dbData;
 
-  // Top offers — pick up to 4 most meaningful
   const topOffers = coupons.slice(0, 4).map(formatDiscount).filter(Boolean);
 
   const lines = [];
@@ -106,7 +102,7 @@ function buildDiscountSummary(dbData) {
   };
 }
 
-// ─── VARIATION ENGINE (unchanged logic) ───────────────────────────
+// ─── VARIATION ENGINE ─────────────────────────────────────────────
 function stableHash(str) {
   let h = 2166136261;
   for (let i = 0; i < str.length; i++) {
@@ -993,7 +989,6 @@ function buildHeading(section, merchant, headingStyleId) {
   return base;
 }
 
-// FAQ question type pools — assigned per store, forces different question angles
 const FAQ_QUESTION_TYPES = [
   {
     id: "savings",
@@ -1059,14 +1054,9 @@ const FAQ_QUESTION_TYPES = [
 
 function getVariation(merchantName, category) {
   const h = stableHash(merchantName + "|" + category);
-  // secondaryHash mixes in blueprint + tone index to spread same-category stores further apart
   const h2 = stableHash(merchantName + "|" + category + "|v2");
   const bp = detectBlueprint(category);
-
-  // FAQ count: 5-8 per store, deterministic
   const faqCount = 5 + (h2 % 4);
-
-  // Pick faqCount question types from pool, unique per store
   const faqTypes = [];
   for (let i = 0; i < faqCount; i++) {
     const idx = (h2 >> (i * 4)) % FAQ_QUESTION_TYPES.length;
@@ -1077,7 +1067,6 @@ function getVariation(merchantName, category) {
         FAQ_QUESTION_TYPES[(idx + i + 1) % FAQ_QUESTION_TYPES.length],
       );
   }
-
   return {
     blueprint: bp,
     tone: TONES[h % 4],
@@ -1108,7 +1097,7 @@ async function fetchMerchantData(merchantSlug, backendUrl) {
   }
 }
 
-// ─── PENDING MERCHANTS ───────────────────────────────────────────
+// ─── PENDING MERCHANTS ────────────────────────────────────────────
 async function fetchPendingMerchants(backendUrl) {
   try {
     const res = await fetch(`${backendUrl}/api/seo/pending-merchants`, {
@@ -1143,7 +1132,7 @@ async function saveContentToDB(slug, content, backendUrl) {
   }
 }
 
-// ─── RESEARCH PROMPT ──────────────────────────────────────────────
+// ─── PROMPTS ──────────────────────────────────────────────────────
 function buildResearchPrompt(merchantName, category, url, crawledText, dbData) {
   const ds = buildDiscountSummary(dbData);
   const dbPart = ds
@@ -1168,7 +1157,6 @@ Return ONLY valid JSON — no preamble, no markdown fences:
 }`;
 }
 
-// ─── FINAL CONTENT PROMPT (all 5 fixes applied) ───────────────────
 function buildFinalPrompt(
   merchantName,
   category,
@@ -1180,7 +1168,6 @@ function buildFinalPrompt(
   const { blueprint, tone, angle, headingStyle, sectionDepths } = variation;
   const ds = buildDiscountSummary(dbData);
 
-  // DB facts block — concrete numbers force unique, non-templated output
   const dbFacts = ds
     ? `
 LIVE STORE STATS (mandatory — weave these into content naturally):
@@ -1576,34 +1563,15 @@ function SaveStatus({ status }) {
   return <StatusBadge {...s} />;
 }
 
-function ScrapeStatus({ status, result }) {
-  if (status === "idle") return null;
-  const map = {
-    loading: { bg: "#E6F1FB", color: "#185FA5", text: "⟳ Scraping offers…" },
-    done: {
-      bg: "#EAF3DE",
-      color: "#2E5C0E",
-      text: `✓ ${result?.inserted ?? 0} inserted, ${result?.skipped ?? 0} skipped`,
-    },
-    failed: {
-      bg: "#FAECE7",
-      color: "#993C1D",
-      text: `✗ ${result?.error || "Scrape failed"}`,
-    },
-  };
-  const s = map[status];
-  return <StatusBadge bg={s.bg} color={s.color} text={s.text} />;
-}
-
 // ─── MAIN COMPONENT ───────────────────────────────────────────────
 export default function VariationEngine() {
-  const [apiKey, setApiKey] = useState(""); // used for single mode
-  const [apiKeys, setApiKeys] = useState([""]); // used for batch mode round-robin
+  const [apiKey, setApiKey] = useState("");
+  const [apiKeys, setApiKeys] = useState([""]);
   const [backendUrl, setBackendUrl] = useState(BACKEND_URL);
   const [model, setModel] = useState("gemini-3.1-flash-lite-preview");
   const [useDB, setUseDB] = useState(true);
-  const [keyUsage, setKeyUsage] = useState({}); // { keyIndex: callCount }
-  const keyIdxRef = useRef(0); // current round-robin pointer
+  const [keyUsage, setKeyUsage] = useState({});
+  const keyIdxRef = useRef(0);
 
   const [merchant, setMerchant] = useState("");
   const [category, setCategory] = useState("");
@@ -1627,9 +1595,6 @@ export default function VariationEngine() {
   const [batchIdx, setBatchIdx] = useState(0);
   const [batchTotal, setBatchTotal] = useState(0);
   const stopRef = useRef(false);
-
-  const [scrapeStatus, setScrapeStatus] = useState("idle"); // idle | loading | done | failed
-  const [scrapeResult, setScrapeResult] = useState(null);
 
   const showPreview = () => {
     if (!merchant || !category) {
@@ -1656,35 +1621,6 @@ export default function VariationEngine() {
       })
       .filter((r) => r.name);
 
-  const scrapeCoupons = async () => {
-    if (!merchantSlug) {
-      setError("DB Slug is required to scrape offers.");
-      return;
-    }
-    if (!apiKey) {
-      setError("Gemini API key is required.");
-      return;
-    }
-    setError("");
-    setScrapeStatus("loading");
-    setScrapeResult(null);
-
-    try {
-      const res = await fetch(`${backendUrl}/api/seo/scrape-coupons`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: merchantSlug, geminiKey: apiKey, model }),
-        signal: AbortSignal.timeout(60000),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || `Failed ${res.status}`);
-      setScrapeResult(data);
-      setScrapeStatus("done");
-    } catch (err) {
-      setScrapeResult({ error: err.message });
-      setScrapeStatus("failed");
-    }
-  };
   // ── Single generate + save ──
   const runSingle = async () => {
     if (!apiKey || !merchant || !category) {
@@ -1708,7 +1644,6 @@ export default function VariationEngine() {
       setDbStatus(dbData ? "connected" : "failed");
     }
 
-    // Skip if already generated unless forced
     if (dbData?.contentGenerated && !forceRegenerate) {
       setError(
         "Content already generated for this store. Enable 'Force Regenerate' to overwrite.",
@@ -1761,7 +1696,6 @@ export default function VariationEngine() {
       setOutput(result);
       setTab("seo");
 
-      // Save to DB
       if (merchantSlug) {
         setSaveStatus("saving");
         setStatus("Saving content to DB…");
@@ -1817,9 +1751,7 @@ export default function VariationEngine() {
         e.message?.toLowerCase().includes("quota");
       const isRetryable =
         isQuota || e.message?.includes("500") || e.message?.includes("503");
-
       if (isRetryable && attempt < 3) {
-        // On quota — rotate key first, then wait
         let nextKey = keyEntry;
         if (isQuota) {
           const rotated = getNextKey();
@@ -1830,7 +1762,7 @@ export default function VariationEngine() {
             nextKey = rotated;
           }
         }
-        const wait = isQuota ? 30000 : (attempt + 1) * 5000; // 30s on quota, 5/10/15s on server error
+        const wait = isQuota ? 30000 : (attempt + 1) * 5000;
         setStatus(`Retry ${attempt + 1}/3 — waiting ${wait / 1000}s…`);
         await new Promise((res) => setTimeout(res, wait));
         return callWithRetry(prompt, nextKey, attempt + 1);
@@ -1839,30 +1771,15 @@ export default function VariationEngine() {
     }
   };
 
-  // ── Process one store ──
+  // ── Process one store (batch) ──
   const processStore = async (r, keyEntry) => {
     let dbData = null;
     let crawledText = "";
-    // Step 1 — Scrape (pass slug directly, no extra merchant-data call)
-    if (r.slug) {
-      try {
-        await fetch(`${backendUrl}/api/seo/scrape-coupons`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ slug: r.slug, geminiKey: keyEntry.k, model }),
-          signal: AbortSignal.timeout(60000),
-        });
-      } catch (e) {
-        console.warn(`Scrape failed for ${r.name}:`, e.message);
-      }
-    }
 
     if (useDB && r.slug) dbData = await fetchMerchantData(r.slug, backendUrl);
 
     // Skip if already generated
-    if (dbData?.contentGenerated) {
-      return { skipped: true };
-    }
+    if (dbData?.contentGenerated) return { skipped: true };
 
     if (r.url) crawledText = await crawlMerchantSite(r.url, backendUrl);
 
@@ -1926,7 +1843,7 @@ export default function VariationEngine() {
     setRunning(true);
     setBatchTotal(rows.length);
 
-    const RPM_DELAY = 4200; // 15 RPM = 1 per 4s — use 4.2s for safety margin
+    const RPM_DELAY = 4200;
 
     for (let i = 0; i < rows.length; i++) {
       if (stopRef.current) break;
@@ -1994,7 +1911,6 @@ export default function VariationEngine() {
       url: r.url || "",
       slug: r.slug || "",
     }));
-    // Remove failed entries from results so they get fresh slots
     setBatchResults((prev) => prev.filter((r) => r.status !== "error"));
     runBatch(rows);
   };
@@ -2039,10 +1955,7 @@ export default function VariationEngine() {
     }));
   };
 
-  const buildH3Blocks = (sections) => {
-    // H3 blocks = FAQ formatted as sub-headings; extend as needed
-    return [];
-  };
+  const buildH3Blocks = () => [];
 
   // ── Exports ──
   const exportCSV = (results) => {
@@ -2140,8 +2053,6 @@ export default function VariationEngine() {
     : "";
   const wordCount = allContent.split(/\s+/).filter(Boolean).length;
   const batchRows = parseBatch(batchText);
-  const estCost = (n) =>
-    (n * (model.includes("flash") ? 0.004 : 0.036)).toFixed(2); // 2-stage = 2x calls
 
   const inputStyle = {
     width: "100%",
@@ -2154,6 +2065,7 @@ export default function VariationEngine() {
     fontFamily: "inherit",
     outline: "none",
   };
+
   const tabStyle = (active) => ({
     padding: "6px 13px",
     fontSize: 12,
@@ -2187,11 +2099,11 @@ export default function VariationEngine() {
         }}
       >
         ⚡ Genie Coupon Variation Engine{" "}
-        <strong>v2.2 — DB Save + LSI Injection</strong>
+        <strong>v2.4 — DB Save + LSI Injection</strong>
         <br />
         <span style={{ fontSize: 12 }}>
-          384 variations · Live crawl · Real DB coupons · Auto-save to merchants
-          table
+          384 variations · Live crawl · Real DB coupons · Auto-save · Use
+          Scraper tool to populate coupons
         </span>
       </div>
 
@@ -2229,7 +2141,6 @@ export default function VariationEngine() {
           Configuration
         </div>
 
-        {/* Single mode — one key */}
         {mode === "single" && (
           <div
             style={{
@@ -2292,7 +2203,6 @@ export default function VariationEngine() {
           </div>
         )}
 
-        {/* Batch mode — multi-key round-robin */}
         {mode === "batch" && (
           <div style={{ marginBottom: 10 }}>
             <div
@@ -2678,41 +2588,6 @@ export default function VariationEngine() {
             </div>
           )}
 
-          {/* Scrape Offers */}
-          <div style={{ marginBottom: "0.75rem" }}>
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <button
-                onClick={scrapeCoupons}
-                disabled={running || scrapeStatus === "loading"}
-                style={{
-                  padding: "9px 14px",
-                  fontSize: 13,
-                  border: "0.5px solid var(--color-border-primary)",
-                  borderRadius: 8,
-                  background: "var(--color-background-primary)",
-                  cursor:
-                    scrapeStatus === "loading" ? "not-allowed" : "pointer",
-                  fontFamily: "inherit",
-                }}
-              >
-                {scrapeStatus === "loading"
-                  ? "⏳ Scraping…"
-                  : "🔍 Scrape Offers"}
-              </button>
-              <ScrapeStatus status={scrapeStatus} result={scrapeResult} />
-            </div>
-            {scrapeStatus === "done" && scrapeResult?.message && (
-              <div
-                style={{
-                  fontSize: 12,
-                  color: "var(--color-text-secondary)",
-                  marginTop: 5,
-                }}
-              >
-                {scrapeResult.message}
-              </div>
-            )}
-          </div>
           <div style={{ display: "flex", gap: 8, marginBottom: "1rem" }}>
             <button
               onClick={showPreview}
@@ -3052,8 +2927,9 @@ export default function VariationEngine() {
               Merchant Name, Category, Website URL, DB Slug
             </code>
             <br />
-            Slug enables DB coupon fetch AND auto-saves generated content. Use
-            "Load Pending" to auto-fill stores with no content yet.
+            Slug enables DB coupon fetch and auto-saves generated content. Run
+            Scraper tool first to populate coupons. Use "Load Pending" to
+            auto-fill stores with no content yet.
           </div>
 
           <div style={{ marginBottom: "0.9rem" }}>

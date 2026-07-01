@@ -1568,7 +1568,7 @@ export default function VariationEngine() {
   const [apiKey, setApiKey] = useState("");
   const [apiKeys, setApiKeys] = useState([""]);
   const [backendUrl, setBackendUrl] = useState(BACKEND_URL);
-  const [model, setModel] = useState("gemini-3.1-flash");
+  const [model, setModel] = useState("gemini-3.1-flash-lite");
   const [useDB, setUseDB] = useState(true);
   const [keyUsage, setKeyUsage] = useState({});
   const keyIdxRef = useRef(0);
@@ -2189,15 +2189,9 @@ export default function VariationEngine() {
                 style={{ ...inputStyle, height: 36 }}
                 disabled={running}
               >
-                <option value="gemini-3.1-flash">
-                  gemini-3.1-flash (500 RPD)
-                </option>
-                <option value="gemini-2.5-flash-lite">
-                  gemini-2.5-flash-lite (20 RPD)
-                </option>
-                <option value="gemini-2.5-flash">
-                  gemini-2.5-flash (20 RPD)
-                </option>
+<option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite (500 RPD/key)</option>
+<option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (20 RPD/key)</option>
+<option value="gemini-3-flash">gemini-3-flash (20 RPD/key)</option>
               </select>
             </div>
           </div>
@@ -2322,16 +2316,9 @@ export default function VariationEngine() {
                 style={{ ...inputStyle, height: 36 }}
                 disabled={running}
               >
-                <option value="gemini-3.1-flash">
-                  gemini-3.1-flash (500 RPD/key)
-                </option>
-                <option value="gemini-2.5-flash-lite">
-                  gemini-2.5-flash-lite (20 RPD/key)
-                </option>
-                <option value="gemini-2.5-flash">
-                  gemini-2.5-flash (20 RPD/key)
-                </option>
-              </select>
+<option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite (500 RPD/key)</option>
+<option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (20 RPD/key)</option>
+<option value="gemini-3-flash">gemini-3-flash (20 RPD/key)</option>              </select>
             </div>
           </div>
         )}

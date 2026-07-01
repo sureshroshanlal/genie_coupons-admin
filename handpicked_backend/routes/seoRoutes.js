@@ -50,7 +50,7 @@ router.get("/merchant-data", async (req, res) => {
   try {
     const { data: merchant, error: mErr } = await supabase
       .from("merchants")
-      .select("id, name, web_url, category_id, content_status, merchant_categories(name)")
+      .select("id, name, web_url, category_id, content_status, merchant_categories!merchants_category_id_fkey(name)")
       .eq("slug", slug)
       .single();
 
@@ -201,7 +201,7 @@ router.get("/pending-merchants", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("merchants")
-      .select("id, name, slug, web_url, merchant_categories(name)")
+      .select("id, name, slug, web_url, merchant_categories!merchants_category_id_fkey(name)")
       .eq("is_publish", true)
       .eq("content_status", "template")
       .order("name", { ascending: true })

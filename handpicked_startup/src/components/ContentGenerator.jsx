@@ -1819,87 +1819,58 @@ export default function VariationEngine() {
   };
 
   // ── Batch generate + save ──
-  const runBatch = async (rowsOverride = null) => {
-    const validKeys = apiKeys.map((k) => k.trim()).filter(Boolean);
-    if (!validKeys.length) {
-      setError("Add at least one Gemini API key for batch.");
-      return;
-    }
-    const rows = rowsOverride || parseBatch(batchText);
-    if (!rows.length) {
-      setError(
-        "No merchants found. Format: Name, Category, URL (opt), Slug (opt)",
-      );
-      return;
-    }
+const runBatch = async (rowsOverride = null) => {
+  const validKeys = apiKeys.map((k) => k.trim()).filter(Boolean);
+  if (!validKeys.length) return setError("Add at least one Gemini API key for batch.");
 
-    if (!rowsOverride) {
-      setError("");
-      setBatchResults([]);
-      keyIdxRef.current = 0;
-      setKeyUsage({});
-    }
-    stopRef.current = false;
-    setRunning(true);
-    setBatchTotal(rows.length);
+  const rows = rowsOverride || parseBatch(batchText);
+  if (!rows.length) return setError("No merchants found. Format: Name, Category, URL (opt), Slug (opt)");
 
-    const RPM_DELAY = 4200;
+  if (!rowsOverride) {
+    setError("");
+    setBatchResults([]);
+    setKeyUsage({});
+  }
+  stopRef.current = false;
+  setRunning(true);
+  setBatchTotal(rows.length);
+  setBatchIdx(0);
 
-    for (let i = 0; i < rows.length; i++) {
-      if (stopRef.current) break;
-      const r = rows[i];
-      setBatchIdx(i + 1);
-      const keyEntry = getNextKey();
-      setStatus(`[${i + 1}/${rows.length}] ${r.name} — key ${keyEntry.i + 1}`);
+  const RPM_DELAY_PER_KEY = 4200; // per-key pacing, still respects each key's own RPM
+  const queue = [...rows];
+  let completed = 0;
 
+  const worker = async (keyEntry) => {
+    while (queue.length && !stopRef.current) {
+      const r = queue.shift();
+      if (!r) break;
+      setStatus(`Processing… key ${keyEntry.i + 1}`);
       try {
         const result = await processStore(r, keyEntry);
-        if (result.skipped) {
-          setBatchResults((prev) => [
-            ...prev,
-            {
-              merchant: r.name,
-              category: r.category,
-              slug: r.slug,
-              status: "skipped",
-            },
-          ]);
-        } else {
-          setBatchResults((prev) => [
-            ...prev,
-            {
-              merchant: r.name,
-              category: r.category,
-              slug: r.slug,
-              status: "done",
-              saved: result.savedOk,
-              keyUsed: keyEntry.i + 1,
-              ...result,
-            },
-          ]);
-        }
+        setBatchResults((prev) => [
+          ...prev,
+          result.skipped
+            ? { merchant: r.name, category: r.category, slug: r.slug, status: "skipped" }
+            : { merchant: r.name, category: r.category, slug: r.slug, status: "done", saved: result.savedOk, keyUsed: keyEntry.i + 1, ...result },
+        ]);
       } catch (e) {
         setBatchResults((prev) => [
           ...prev,
-          {
-            merchant: r.name,
-            category: r.category,
-            url: r.url,
-            slug: r.slug,
-            status: "error",
-            error: e.message,
-            keyUsed: keyEntry.i + 1,
-          },
+          { merchant: r.name, category: r.category, url: r.url, slug: r.slug, status: "error", error: e.message, keyUsed: keyEntry.i + 1 },
         ]);
       }
-
-      if (i < rows.length - 1)
-        await new Promise((res) => setTimeout(res, RPM_DELAY));
+      completed++;
+      setBatchIdx(completed);
+      if (queue.length) await new Promise((res) => setTimeout(res, RPM_DELAY_PER_KEY));
     }
-
-    setRunning(false);
-    setStatus(stopRef.current ? "Stopped." : "Batch complete.");
   };
+
+  const validKeyEntries = apiKeys.map((k, i) => ({ k: k.trim(), i })).filter((x) => x.k);
+  await Promise.all(validKeyEntries.map(worker));
+
+  setRunning(false);
+  setStatus(stopRef.current ? "Stopped." : "Batch complete.");
+};
 
   // ── Retry only failed stores ──
   const retryFailed = () => {
@@ -2181,7 +2152,7 @@ export default function VariationEngine() {
                   marginBottom: 4,
                 }}
               >
-                Model
+                Model	
               </label>
               <select
                 value={model}

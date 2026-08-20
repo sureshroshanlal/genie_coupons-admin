@@ -58,7 +58,7 @@ router.get("/merchant-data", async (req, res) => {
 
     const { data: coupons, error: cErr } = await supabase
       .from("coupons")
-      .select("id, title, coupon_code, coupon_type, discount_type, discount_value, currency")
+      .select("id, title, coupon_code, coupon_type, discount_type, discount_value")
       .eq("merchant_id", merchant.id)
       .eq("is_publish", true)
       .order("discount_value", { ascending: false, nullsFirst: false })
@@ -107,7 +107,7 @@ router.get("/merchant-data", async (req, res) => {
         code: c.coupon_code,
         discountType: c.discount_type,
         value: c.discount_value ? Number(c.discount_value) : null,
-        currency: c.currency,
+        currency: null,
         type: c.coupon_type,
       })),
       lastUpdated: new Date().toISOString().split("T")[0],

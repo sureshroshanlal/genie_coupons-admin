@@ -21,7 +21,13 @@ import { supabase } from "./dbhelper/dbclient.js";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = ["https://admin.geniecoupon.com"];
+const allowedOrigins = [
+  "https://admin.geniecoupon.com",
+  "http://localhost:4321",
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://localhost:5000"
+];
 app.use(
   cors({
     origin: function (origin, callback) {
